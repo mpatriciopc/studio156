@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- REGLAS DE CONTROL DE CACHÉ DE LA PÁGINA -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Colección Exclusiva | Estuprenda</title>
+
+    <!-- RECURSOS ESTRATÉGICOS STUDIO 156 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Hoja de Estilos de Catálogo y Marca (Contiene todo el diseño CSS Puro unificado) -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- CABECERA -->
+    <div id="bloque-cabecera" class="bloque-cabecera"></div>
+
+    <!-- SECCIÓN DE CATÁLOGO -->
+    <main class="catalogo-seccion">
+        <div class="catalogo-max-width">
+            <div class="catalogo-cabecera animacion-revelar">
+                <span class="catalogo-subtitle">Catálogo 2026</span>
+                <h1 class="catalogo-title fuente-serif italic">Nuestra Selección <span
+                        class="texto-fucsia-viva">Exclusiva</span></h1>
+                <p class="catalogo-desc">
+                    Cada prenda es una pieza única seleccionada especialmente para ti. Compra directamente vía WhatsApp.
+                </p>
+            </div>
+
+            <!-- Botonera de Filtros Dinámicos -->
+            <nav id="filtros-categoria" class="prenda-filtros-container">
+            </nav>
+
+            <!-- Rejilla del Catálogo -->
+            <div id="catalogo-estuprenda" class="catalogo-grid">
+                <div class="spinner-container">
+                    <i class="fas fa-spinner spinner-icon"></i>
+                    <p class="spinner-text">Cargando catálogo de prendas exclusivas...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="bloque-footer-container"></div>
+
+    <!-- Botón WhatsApp Fijo -->
+    <a href="https://wa.me/56926135244" class="boton-whatsapp-fijo" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
+    </a>
+
+    <!-- MODAL DETALLE DE PRENDA (POP-UP) -->
+    <div id="modal-detalle" class="modal-backdrop" onclick="cerrarModalDesdeBackdrop(event)">
+        <div class="modal-content">
+            <button onclick="cerrarModal()" class="modal-close-btn" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-info" class="modal-grid">
+                <!-- Rellenado dinámicamente desde coleccion.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- LÓGICA DE CONTROL -->
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/coleccion.js"></script>
+</body>
+
+</html>
