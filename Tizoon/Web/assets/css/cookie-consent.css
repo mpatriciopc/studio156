@@ -1,0 +1,330 @@
+/* ============================================================
+   ZM Cookie Consent Styles
+   Sistema de diseño: Dark/Gold (coherente con styles.css)
+   ============================================================ */
+
+/* --- Overlay --- */
+.cc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.cc-overlay.cc-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Banner --- */
+.cc-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #0e0e0e;
+  border-top: 1px solid #fe174f;
+  padding: 28px 0;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cc-banner.cc-visible {
+  transform: translateY(0);
+}
+
+.cc-banner-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.cc-banner-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.cc-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #f5f5f5;
+  margin-bottom: 8px;
+}
+
+.cc-description {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  color: #8a8a8a;
+  line-height: 1.55;
+}
+
+.cc-link {
+  color: #fe174f;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.cc-link:hover {
+  color: #f5f5f5;
+}
+
+/* --- Botones con IGUAL JERARQUÍA VISUAL --- */
+.cc-banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cc-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid #fe174f;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Los 3 botones tienen el MISMO nivel visual (Ley 21.719) */
+.cc-btn-accept {
+  background: #fe174f;
+  color: #080808;
+  border-color: #fe174f;
+}
+
+.cc-btn-accept:hover {
+  background: #d12b54;
+  border-color: #d12b54;
+}
+
+.cc-btn-reject {
+  background: transparent;
+  color: #fe174f;
+  border-color: #fe174f;
+}
+
+.cc-btn-reject:hover {
+  background: #fe174f;
+  color: #080808;
+}
+
+.cc-btn-configure {
+  background: transparent;
+  color: #fe174f;
+  border-color: #fe174f;
+}
+
+.cc-btn-configure:hover {
+  background: #fe174f;
+  color: #080808;
+}
+
+/* --- Config Panel --- */
+.cc-config-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  z-index: 9999;
+  background: #0e0e0e;
+  border: 1px solid #222;
+  width: 90%;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cc-config-panel.cc-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cc-config-content {
+  padding: 36px 32px;
+}
+
+.cc-config-content .cc-title {
+  margin-bottom: 10px;
+}
+
+.cc-config-content .cc-description {
+  margin-bottom: 28px;
+}
+
+.cc-config-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.cc-config-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #151515;
+  border: 1px solid #222;
+  gap: 16px;
+}
+
+.cc-config-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.cc-config-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #f5f5f5;
+}
+
+.cc-config-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  color: #8a8a8a;
+  line-height: 1.4;
+}
+
+/* --- Toggle Switch --- */
+.cc-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.cc-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cc-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #333;
+  border-radius: 26px;
+  transition: background 0.3s ease;
+}
+
+.cc-toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.cc-toggle input:checked + .cc-toggle-slider {
+  background-color: #fe174f;
+}
+
+.cc-toggle input:checked + .cc-toggle-slider::before {
+  transform: translateX(22px);
+}
+
+.cc-toggle input:disabled + .cc-toggle-slider {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cc-config-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --- Consent Checkboxes (Newsletter) --- */
+.consent-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  color: #8a8a8a;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.consent-label input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #fe174f;
+  cursor: pointer;
+}
+
+.consent-link {
+  color: #fe174f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent-link:hover {
+  color: #f5f5f5;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+  .cc-banner-content {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .cc-banner-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cc-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cc-config-panel {
+    width: 95%;
+  }
+
+  .cc-config-content {
+    padding: 28px 20px;
+  }
+}

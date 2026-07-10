@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZM | Política de Privacidad</title>
+  <meta name="description" content="Política de Privacidad de ZM. Conoce cómo tratamos tus datos personales conforme a la Ley N° 21.719 de Protección de Datos Personales de Chile.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/cookie-consent.css">
+  <style>
+    /* --- Estilos específicos para la página de privacidad --- */
+    .privacy-section {
+      padding: 160px 0 100px;
+      min-height: 100vh;
+    }
+
+    .privacy-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .privacy-header {
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 30px;
+    }
+
+    .privacy-header h1 {
+      font-family: var(--font-giant);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .privacy-date {
+      font-family: var(--font-alt);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .privacy-body h2 {
+      font-family: var(--font-giant);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-top: 45px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .privacy-body h3 {
+      font-family: var(--font-alt);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .privacy-body p,
+    .privacy-body li {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .privacy-body ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .privacy-body li {
+      margin-bottom: 6px;
+    }
+
+    .privacy-body strong {
+      color: var(--text-primary);
+    }
+
+    .privacy-body a {
+      color: var(--accent-color);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .privacy-body a:hover {
+      color: var(--text-primary);
+    }
+
+    /* --- ARCO+P Form --- */
+    .arco-form {
+      margin-top: 30px;
+      padding: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+    }
+
+    .arco-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .arco-form label {
+      display: block;
+      font-family: var(--font-alt);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .arco-form input,
+    .arco-form select,
+    .arco-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .arco-form input:focus,
+    .arco-form select:focus,
+    .arco-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .arco-form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .arco-form select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238a8a8a' viewBox='0 0 16 16'%3E%3Cpath d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    .arco-form select option {
+      background: var(--bg-color);
+      color: var(--text-primary);
+    }
+
+    .arco-submit-btn {
+      font-family: var(--font-alt);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border: 1px solid var(--accent-color);
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .arco-submit-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    @media (max-width: 768px) {
+      .privacy-header h1 {
+        font-size: 2rem;
+      }
+      .privacy-section {
+        padding: 130px 0 60px;
+      }
+      .arco-form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- NAVIGATION HEADER --- -->
+  <header id="header">
+    <div class="container">
+      <a href="index.html" class="logo">ZM<span>.</span></a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- --- PRIVACY POLICY CONTENT --- -->
+  <section class="privacy-section">
+    <div class="container">
+      <div class="privacy-container">
+
+        <div class="privacy-header">
+          <h1>Política de Privacidad</h1>
+          <span class="privacy-date">Última actualización: 7 de julio de 2026</span>
+        </div>
+
+        <div class="privacy-body">
+
+          <!-- 1. Identidad del Responsable -->
+          <h2>1. Identidad del Responsable</h2>
+          <p>El responsable del tratamiento de tus datos personales es <strong>ZM — Tu Tienda de Música Familiar</strong>, con domicilio en Chile. Para cualquier consulta sobre privacidad puedes contactarnos en:</p>
+          <ul>
+            <li><strong>Correo electrónico:</strong> privacidad@zm.cl</li>
+            <li><strong>Teléfono:</strong> +56 9 1234 5678</li>
+          </ul>
+
+          <!-- 2. Finalidad del Tratamiento -->
+          <h2>2. Finalidad del Tratamiento</h2>
+          <p>Recopilamos y tratamos tus datos personales exclusivamente para las siguientes finalidades:</p>
+          <ul>
+            <li><strong>Procesamiento de compras:</strong> Gestionar pedidos, pagos y despachos de productos adquiridos en nuestra tienda en línea.</li>
+            <li><strong>Comunicación directa:</strong> Responder consultas realizadas por WhatsApp, correo electrónico o formularios de contacto.</li>
+            <li><strong>Boletín informativo:</strong> Enviar novedades sobre productos, ofertas y contenido musical, <strong>solo si otorgas tu consentimiento previo e inequívoco</strong>.</li>
+            <li><strong>Marketing personalizado:</strong> Enviar publicidad y ofertas segmentadas, <strong>únicamente si aceptas voluntariamente esta finalidad por separado</strong>.</li>
+            <li><strong>Mejora del servicio:</strong> Analizar el uso del sitio web para optimizar la experiencia de navegación (sujeto a tu consentimiento de cookies analíticas).</li>
+          </ul>
+
+          <!-- 3. Base Legal -->
+          <h2>3. Base Legal del Tratamiento</h2>
+          <p>El tratamiento de tus datos se fundamenta en las siguientes bases legales, conforme a la <strong>Ley N° 21.719 de Protección de Datos Personales de Chile</strong>:</p>
+          <ul>
+            <li><strong>Consentimiento inequívoco:</strong> Para suscripción al boletín, cookies analíticas y de marketing, y comunicaciones promocionales.</li>
+            <li><strong>Ejecución de contrato:</strong> Para procesar compras y gestionar la relación comercial.</li>
+            <li><strong>Interés legítimo:</strong> Para la seguridad del sitio web y la prevención de fraude.</li>
+            <li><strong>Obligación legal:</strong> Para cumplimiento tributario y regulatorio cuando corresponda.</li>
+          </ul>
+
+          <!-- 4. Datos Recopilados -->
+          <h2>4. Datos Personales Recopilados</h2>
+          <p>Aplicamos el <strong>principio de minimización de datos</strong>. Solo recopilamos los datos estrictamente necesarios:</p>
+
+          <h3>En compras y checkout:</h3>
+          <ul>
+            <li>Nombre completo</li>
+            <li>Correo electrónico</li>
+            <li>Datos de pago (procesados directamente por Mercado Pago; ZM no almacena datos de tarjetas)</li>
+          </ul>
+
+          <h3>En suscripción al boletín (Club ZM):</h3>
+          <ul>
+            <li>Nombre</li>
+            <li>Correo electrónico</li>
+          </ul>
+
+          <h3>Datos recopilados automáticamente (con tu consentimiento):</h3>
+          <ul>
+            <li>Dirección IP</li>
+            <li>Tipo de navegador y dispositivo</li>
+            <li>Páginas visitadas y tiempo de permanencia</li>
+          </ul>
+
+          <!-- 5. Tiempo de Conservación -->
+          <h2>5. Tiempo de Conservación</h2>
+          <ul>
+            <li><strong>Datos de compra:</strong> Se conservan durante el tiempo necesario para cumplir con obligaciones legales y tributarias (mínimo 6 años según normativa tributaria chilena).</li>
+            <li><strong>Datos de suscripción:</strong> Se conservan mientras mantengas tu suscripción activa. Puedes darte de baja en cualquier momento.</li>
+            <li><strong>Cookies analíticas:</strong> Según la configuración del servicio (generalmente hasta 26 meses).</li>
+          </ul>
+
+          <!-- 6. Cookies -->
+          <h2>6. Uso de Cookies</h2>
+          <p>Nuestro sitio utiliza cookies clasificadas en tres categorías:</p>
+          <ul>
+            <li><strong>Esenciales:</strong> Necesarias para el funcionamiento del sitio (carrito de compras, sesión). Siempre activas.</li>
+            <li><strong>Analíticas:</strong> Nos ayudan a comprender cómo usas el sitio (ej. Google Analytics). Solo se activan con tu consentimiento.</li>
+            <li><strong>Marketing:</strong> Permiten mostrar publicidad relevante en otras plataformas (ej. Meta Pixel). Solo se activan con tu consentimiento.</li>
+          </ul>
+          <p>Puedes gestionar tus preferencias de cookies en cualquier momento haciendo clic en <a href="#" id="open-cookie-config">Configuración de Cookies</a>.</p>
+
+          <!-- 7. Derechos ARCO+P -->
+          <h2>7. Tus Derechos (ARCO+P)</h2>
+          <p>Conforme a la Ley N° 21.719, tienes derecho a ejercer <strong>de forma gratuita</strong> los siguientes derechos sobre tus datos personales:</p>
+          <ul>
+            <li><strong>Acceso (A):</strong> Solicitar información sobre los datos personales que tenemos sobre ti.</li>
+            <li><strong>Rectificación (R):</strong> Corregir datos inexactos, incompletos o desactualizados.</li>
+            <li><strong>Cancelación/Supresión (C):</strong> Solicitar la eliminación de tus datos cuando ya no sean necesarios para la finalidad original.</li>
+            <li><strong>Oposición (O):</strong> Oponerte al tratamiento de tus datos para fines específicos, como marketing.</li>
+            <li><strong>Portabilidad (P):</strong> Recibir tus datos en un formato estructurado y de uso común para transferirlos a otro responsable.</li>
+            <li><strong>Bloqueo (B):</strong> Solicitar la suspensión temporal del tratamiento de tus datos.</li>
+          </ul>
+          <p>Para ejercer cualquiera de estos derechos, utiliza el siguiente formulario o escríbenos a <strong>privacidad@zm.cl</strong>. Responderemos en un plazo máximo de 15 días hábiles.</p>
+
+          <!-- ARCO+P Form -->
+          <form id="arco-form" class="arco-form">
+            <h3>Formulario de Ejercicio de Derechos ARCO+P</h3>
+
+            <div class="form-group">
+              <label for="arco-name">Nombre Completo</label>
+              <input type="text" id="arco-name" placeholder="Ingresa tu nombre completo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="arco-email">Correo Electrónico</label>
+              <input type="email" id="arco-email" placeholder="correo@ejemplo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="arco-rut">RUT o Documento de Identidad</label>
+              <input type="text" id="arco-rut" placeholder="12.345.678-9">
+            </div>
+
+            <div class="form-group">
+              <label for="arco-right">Derecho que Deseas Ejercer</label>
+              <select id="arco-right" required>
+                <option value="" disabled selected>Selecciona un derecho</option>
+                <option value="acceso">Acceso — Quiero saber qué datos tienen sobre mí</option>
+                <option value="rectificacion">Rectificación — Quiero corregir mis datos</option>
+                <option value="cancelacion">Cancelación/Supresión — Quiero que eliminen mis datos</option>
+                <option value="oposicion">Oposición — No quiero que usen mis datos para cierto fin</option>
+                <option value="portabilidad">Portabilidad — Quiero recibir mis datos en formato digital</option>
+                <option value="bloqueo">Bloqueo — Quiero suspender temporalmente el tratamiento</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="arco-detail">Detalle de tu Solicitud</label>
+              <textarea id="arco-detail" placeholder="Describe con el mayor detalle posible tu solicitud..." required></textarea>
+            </div>
+
+            <button type="submit" class="arco-submit-btn">Enviar Solicitud</button>
+          </form>
+
+          <!-- 8. Actualizaciones -->
+          <h2>8. Actualizaciones a Esta Política</h2>
+          <p>Nos reservamos el derecho a modificar esta Política de Privacidad para adaptarla a cambios legislativos o nuevas funcionalidades del sitio. Cualquier modificación significativa será comunicada mediante un aviso visible en el sitio web. Te recomendamos revisarla periódicamente.</p>
+
+          <!-- 9. Contacto -->
+          <h2>9. Contacto</h2>
+          <p>Si tienes dudas, comentarios o reclamos sobre el tratamiento de tus datos personales, puedes contactarnos en:</p>
+          <ul>
+            <li><strong>Correo:</strong> privacidad@zm.cl</li>
+            <li><strong>Teléfono:</strong> +56 9 1234 5678</li>
+          </ul>
+          <p>También puedes presentar un reclamo ante la <strong>Agencia de Protección de Datos Personales de Chile</strong> si consideras que tus derechos han sido vulnerados.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- FOOTER --- -->
+  <footer>
+    <div class="container">
+      <a href="index.html" class="footer-logo">ZM<span>.</span></a>
+      <p>&copy; 2026 ZM. Todos los derechos reservados. Tu tienda de música de accesorios e instrumentos.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Instagram de ZM">Instagram</a>
+        <a href="#" class="social-link" aria-label="YouTube de ZM">YouTube</a>
+        <a href="privacidad.html" class="social-link" aria-label="Política de Privacidad">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  </main>
+
+  <!-- --- SCRIPTS --- -->
+  <script src="assets/js/cookie-consent.js"></script>
+  <script>
+    // ARCO+P Form Handler
+    const arcoForm = document.getElementById('arco-form');
+    if (arcoForm) {
+      arcoForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('arco-name').value.trim();
+        const email = document.getElementById('arco-email').value.trim();
+        const right = document.getElementById('arco-right').value;
+        const detail = document.getElementById('arco-detail').value.trim();
+
+        if (!name || !email || !right || !detail) {
+          alert('Por favor, completa todos los campos obligatorios.');
+          return;
+        }
+
+        // En producción, esto enviaría la solicitud a un backend/email
+        alert(`¡Solicitud recibida, ${name}!\n\nHemos registrado tu solicitud de "${right}" y te responderemos a ${email} en un plazo máximo de 15 días hábiles.\n\nGracias por confiar en ZM.`);
+        arcoForm.reset();
+      });
+    }
+
+    // Link para abrir configuración de cookies desde el texto
+    const cookieConfigLink = document.getElementById('open-cookie-config');
+    if (cookieConfigLink) {
+      cookieConfigLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.ZM_Consent && window.ZM_Consent.showConfig) {
+          window.ZM_Consent.showConfig();
+        }
+      });
+    }
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tizzón - Sabores que encienden experiencias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --bg-card: rgba(18, 18, 18, 0.75);
+            --primary-orange: #c4836a;
+            --text-light: #F4F4F4;
+            --text-muted: #c8beba;
+            --border-color: rgba(196, 131, 106, 0.25);
+            --copper-gradient: linear-gradient(135deg, #e5b8a6 0%, #c4836a 50%, #a25c43 100%);
+            --copper-gradient-hover: linear-gradient(135deg, #ebd2c8 0%, #d3967f 50%, #b26c53 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ANIMATION (KEN BURNS EFFECT) --- */
+        .bg-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: linear-gradient(rgba(7, 7, 7, 0.75), rgba(7, 7, 7, 0.9)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600') no-repeat center center/cover;
+            animation: kenBurns 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* --- SPARKS PARTICLES EFFECT --- */
+        .sparks-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            bottom: -20px;
+            width: 3px;
+            height: 3px;
+            background-color: #f7a072;
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise 8s infinite linear;
+            box-shadow: 0 0 8px #f7a072, 0 0 12px #ff5f00;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -20px;
+                transform: translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(100px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* --- MAIN CARD --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 580px;
+            padding: 45px 35px;
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(196, 131, 106, 0.08);
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- BRANDING --- */
+        .logo-container {
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px rgba(196, 131, 106, 0.2));
+            animation: pulseLogo 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseLogo {
+            0% { filter: drop-shadow(0 0 12px rgba(196, 131, 106, 0.2)); }
+            50% { filter: drop-shadow(0 0 22px rgba(196, 131, 106, 0.45)); }
+            100% { filter: drop-shadow(0 0 12px rgba(196, 131, 106, 0.2)); }
+        }
+
+        .subtitle {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+
+        /* --- CONTENT --- */
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* --- PROGRESS / COOKING SIMULATOR --- */
+        .progress-box {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-orange);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .progress-track {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 85%;
+            height: 100%;
+            background: var(--copper-gradient);
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(196, 131, 106, 0.5);
+            animation: animateProgress 4s ease-out forwards;
+        }
+
+        @keyframes animateProgress {
+            0% { width: 0%; }
+            100% { width: 85%; }
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* --- ACTIONS --- */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-filled {
+            background: var(--copper-gradient);
+            color: #070707;
+            box-shadow: 0 4px 15px rgba(196, 131, 106, 0.25);
+        }
+
+        .btn-filled:hover {
+            background: var(--copper-gradient-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 131, 106, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-orange);
+            background-color: rgba(196, 131, 106, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* --- CONTACT NOTIFICATION FORM --- */
+        .notify-form {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .input-email {
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-email:focus {
+            border-color: var(--primary-orange);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 10px rgba(196, 131, 106, 0.15);
+        }
+
+        .btn-submit {
+            background: var(--copper-gradient);
+            color: #070707;
+            border: none;
+            font-weight: 700;
+            padding: 0 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--copper-gradient-hover);
+            box-shadow: 0 4px 12px rgba(196, 131, 106, 0.3);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 25px;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--primary-orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .success-msg {
+            display: none;
+            font-size: 13.5px;
+            color: #55c57a;
+            margin-top: 10px;
+            font-weight: 600;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 35px 20px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .logo {
+                height: 100px;
+            }
+            .notify-form {
+                flex-direction: column;
+            }
+            .btn-submit {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-slider"></div>
+
+    <div class="sparks-container" id="sparks"></div>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/img/eltizoonblack.png" alt="El Tizoon Logo" class="logo" onerror="this.src='https://via.placeholder.com/250x120/121212/c4836a?text=El+Tizz%C3%B3n'">
+            <div class="subtitle">Sabores Auténticos del Perú</div>
+        </div>
+
+        <h1>Nuestra Cocina se Está Encendiendo</h1>
+        <p class="description">
+            Estamos preparando las brasas y afinando nuestra carta para ofrecerte una experiencia gastronómica inigualable. Muy pronto encenderemos los fuegos de nuestra cocina para recibirte.
+        </p>
+
+        <div class="progress-box">
+            <div class="progress-header">
+                <span>Preparando las brasas</span>
+                <span>85% Completado</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://wa.me/56967459137?text=Hola%20El%20Tizz%C3%B3n,%20me%20gustar%C3%ADa%20hacer%20una%20reserva%20o%20conocer%20m%C3%A1s%20detalles%20de%20la%20apertura." target="_blank" class="btn btn-filled">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.031 2a9.967 9.967 0 0 0-9.97 9.97c0 1.882.52 3.64 1.414 5.152L2.015 22l5.059-1.328a9.905 9.905 0 0 0 4.953 1.301c5.502 0 9.974-4.472 9.974-9.97A9.98 9.98 0 0 0 12.031 2zm4.846 12.569c-.27.135-1.602.791-1.85.882-.248.09-.43.136-.61.406-.18.27-.698.882-.857 1.062-.158.18-.318.202-.588.068-.27-.135-1.143-.421-2.176-1.343-.804-.717-1.347-1.603-1.505-1.873-.158-.27-.017-.417.118-.552.122-.121.27-.315.405-.472.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.61-1.472-.835-2.013-.22-.528-.44-.457-.61-.466-.157-.008-.337-.009-.517-.009-.18 0-.472.067-.719.338-.247.27-.944.923-.944 2.25 0 1.327.966 2.61 1.101 2.791.135.18 1.9 2.901 4.6 4.07.643.279 1.144.445 1.534.569.646.205 1.233.176 1.698.107.518-.077 1.602-.656 1.828-1.288.225-.632.225-1.175.158-1.288-.068-.113-.248-.18-.518-.315z"/>
+                </svg>
+                Coordinar por WhatsApp
+            </a>
+            
+            <a href="Carta Tizzon Junio 2026.pdf" target="_blank" class="btn btn-outline" onerror="this.style.display='none'">
+                Ver Carta Anticipada (PDF)
+            </a>
+        </div>
+
+        <div style="text-align: left; margin-bottom: 5px;">
+            <label style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-orange); font-weight: bold;">Avísame cuando abran</label>
+        </div>
+        <form class="notify-form" onsubmit="handleNotify(event)">
+            <input type="email" id="notify-email" class="input-email" placeholder="Tu correo electrónico" required>
+            <button type="submit" class="btn-submit">Suscribir</button>
+        </form>
+        <div id="notify-success" class="success-msg">¡Excelente! Te avisaremos apenas encendamos los fuegos.</div>
+
+        <footer>
+            © 2026 El Tizzón Restaurant. Conoce nuestra <a href="javascript:void(0)" onclick="alert('Trataremos tus datos con absoluta confidencialidad bajo la Ley N° 19.628.')">Política de Privacidad</a>.
+        </footer>
+    </div>
+
+    <script>
+        // --- SPARKS GENERATOR ---
+        const sparksContainer = document.getElementById('sparks');
+        const sparkCount = 35;
+
+        for (let i = 0; i < sparkCount; i++) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            
+            // Randomize position and animation properties
+            spark.style.left = Math.random() * 100 + '%';
+            spark.style.width = Math.random() * 3 + 2 + 'px';
+            spark.style.height = spark.style.width;
+            
+            const delay = Math.random() * 8;
+            const duration = Math.random() * 5 + 4;
+            spark.style.animationDelay = delay + 's';
+            spark.style.animationDuration = duration + 's';
+            
+            sparksContainer.appendChild(spark);
+        }
+
+        // --- FORM HANDLER ---
+        function handleNotify(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('notify-email');
+            const successMsg = document.getElementById('notify-success');
+            
+            const email = emailInput.value;
+            
+            // Guardar localmente
+            let leads = [];
+            try {
+                const storedLeads = localStorage.getItem('tizoon_opening_leads');
+                if (storedLeads) leads = JSON.parse(storedLeads);
+            } catch(e) {}
+            
+            leads.push({ email: email, timestamp: new Date().toISOString() });
+            localStorage.setItem('tizoon_opening_leads', JSON.stringify(leads));
+            
+            // Enviar a Google Sheets de reservas si la URL está definida en segundo plano (opcional)
+            const sheetsUrl = "https://script.google.com/macros/s/AKfycbyUOMeSYCWJOMiJ0vayMxxYTf2sflOyZs4y7pxEwNBVIxUhUGHS-m73C4iC90pnTTnNYg/exec";
+            if (sheetsUrl) {
+                fetch(sheetsUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tipo: 'SUSCRIPCION_APERTURA', email: email })
+                }).catch(() => {});
+            }
+            
+            emailInput.value = '';
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                successMsg.style.opacity = '1';
+            }, 50);
+        }
+    </script>
+</body>
+</html>

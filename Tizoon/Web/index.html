@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZM | Tu Tienda de Música Familiar</title>
+  <meta name="description"
+    content="Zona de Músicos (ZDM) acerca la música a todas las personas ofreciendo instrumentos musicales económicos, accesibles y de buena calidad, con accesorios y repuestos en un solo lugar.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/cookie-consent.css">
+
+  <!-- Datos Estructurados JSON-LD: MusicStore -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicStore",
+    "name": "Zona de Músicos",
+    "description": "Acercamos la música a todas las personas ofreciendo instrumentos musicales económicos, accesibles y de buena calidad, con accesorios y repuestos en un solo lugar.",
+    "url": "https://www.zm.cl",
+    "foundingDate": "2020",
+    "telephone": "+56912345678",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CL"
+    },
+    "priceRange": "$$",
+    "currenciesAccepted": "CLP",
+    "paymentAccepted": "Tarjeta de crédito, Tarjeta de débito, Mercado Pago, Transferencia",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Catálogo de Instrumentos y Accesorios ZM",
+      "url": "https://www.zm.cl/catalogo.html"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.87",
+      "bestRating": "5",
+      "ratingCount": "327"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- --- NAVIGATION HEADER --- -->
+  <header id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo.png" alt="Zona de Músicos Logo">
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <button id="cart-toggle-btn" class="cart-icon-btn" aria-label="Abrir carrito de compras">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span id="cart-badge" class="cart-badge">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- --- HERO SECTION --- -->
+  <section id="inicio" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tagline">Acercando la Música a Todos</span>
+        <h1 class="hero-title">
+          <span>ZONA DE</span>
+          <span>MÚSICOS</span>
+        </h1>
+        <p class="hero-description">Nacimos con la idea de acercar la música a todas las personas, ofreciendo instrumentos musicales económicos, accesibles y de buena calidad. Queremos que tanto quienes están comenzando como quienes ya tienen experiencia encuentren el instrumento que necesitan a un precio conveniente y con una atención cercana de confianza.</p>
+        <div class="hero-cta">
+          <a href="catalogo.html" class="btn btn-primary">Ver Catálogo</a>
+          <a href="#manifiesto" class="btn btn-secondary">Nuestra Historia</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- RUNNING TICKER --- -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item">ZONA DE MÚSICOS</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">ACERCANDO LA MÚSICA A TODOS</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">TODO PARA EL MÚSICO</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">ATENCIÓN CERCANA</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">ZDM MÚSICA</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">INSTRUMENTOS Y ACCESORIOS</span>
+      <span class="ticker-item">★</span>
+      <span class="ticker-item">BUENA CALIDAD Y PRECIO CONVENIENTE</span>
+      <span class="ticker-item">★</span>
+    </div>
+  </div>
+
+  <!-- --- FEATURED COLLECTIONS SECTION --- -->
+  <section id="colecciones" class="colecciones-section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 50px; text-align: center;">
+        <span class="section-tagline">Nuestras Colecciones</span>
+        <h2 class="section-title">Explora por Categorías</h2>
+      </div>
+
+      <div class="colecciones-grid">
+        <!-- Guitarras -->
+        <div class="coleccion-card">
+          <div class="coleccion-img-wrapper">
+            <img src="assets/acoustic_guitar.png" alt="Colección Guitarras ZM" class="coleccion-img">
+          </div>
+          <div class="coleccion-content">
+            <h3 class="coleccion-title">Guitarras</h3>
+            <p class="coleccion-desc">Encuentra accesorios para instrumentos musicales que te ayudarán a tocar mejor y
+              cuidar tu instrumento. Productos prácticos y de calidad, ideales para estudiantes y músicos.</p>
+            <a href="catalogo.html?category=Guitarras" class="coleccion-link">Ver Guitarras &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Ukeleles -->
+        <div class="coleccion-card">
+          <div class="coleccion-img-wrapper">
+            <img src="assets/ukulele.png" alt="Colección Ukeleles ZM" class="coleccion-img">
+          </div>
+          <div class="coleccion-content">
+            <h3 class="coleccion-title">Ukeleles</h3>
+            <p class="coleccion-desc">Ukeleles de excelente calidad, livianos y fáciles de tocar, ideales para
+              principiantes y músicos de todos los niveles. Disfruta un sonido cálido y versátil en cada acorde. ¡Elige
+              el tuyo y empieza a hacer música hoy!</p>
+            <a href="catalogo.html?category=Ukeleles" class="coleccion-link">Ver Ukeleles &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Accesorios -->
+        <div class="coleccion-card">
+          <div class="coleccion-img-wrapper">
+            <img src="assets/tuner.png" alt="Colección Accesorios ZM" class="coleccion-img">
+          </div>
+          <div class="coleccion-content">
+            <h3 class="coleccion-title">Accesorios</h3>
+            <p class="coleccion-desc">Encuentra accesorios para instrumentos musicales que te ayudarán a tocar mejor y
+              cuidar tu instrumento. Productos prácticos y de calidad, ideales para estudiantes y músicos.</p>
+            <a href="catalogo.html?category=Accesorios" class="coleccion-link">Ver Accesorios &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Cuadernos -->
+        <div class="coleccion-card">
+          <div class="coleccion-img-wrapper">
+            <img src="assets/music_notebook.png" alt="Colección Cuadernos ZM" class="coleccion-img">
+          </div>
+          <div class="coleccion-content">
+            <h3 class="coleccion-title">Cuadernos</h3>
+            <p class="coleccion-desc">Descubre nuestra colección de cuadernos de música, ideales para estudiantes,
+              profesores y músicos que desean escribir partituras, ejercicios y composiciones. Diseñados con pentagramas
+              claros y buen espacio para anotar ideas musicales.</p>
+            <a href="catalogo.html?category=Cuadernos" class="coleccion-link">Ver Cuadernos &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- MANIFESTO SECTION (TEXTURED YELLOW) --- -->
+  <section id="manifiesto" class="manifesto-section">
+    <div class="container">
+      <div class="manifesto-grid">
+        <div class="manifesto-content">
+          <span class="manifesto-tagline">Nuestra Historia</span>
+          <h2 class="manifesto-title">Música al alcance de todos.</h2>
+          <p class="manifesto-body">Zona de Músicos nació en pandemia con la idea de acercar la música a todas las personas, ofreciendo instrumentos musicales económicos, accesibles y de buena calidad. Nuestro propósito es que tanto quienes están comenzando como quienes ya tienen experiencia puedan encontrar el instrumento que necesitan a un precio conveniente. Creemos que todos deberían tener la oportunidad de disfrutar y aprender algún instrumento musical y que encuentren todo lo que se necesita para la mantencion o accesorios en un solo lugar.</p>
+        </div>
+        <div class="manifesto-badge-wrapper">
+          <img src="assets/img/logo.png" alt="Zona de Músicos Logo Blanco" style="height: 220px; width: auto; filter: brightness(0) invert(1); opacity: 0.95;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- MUSICIANS SECTION (HISTORIAS DE MÚSICOS) --- -->
+  <section id="relatos" class="musicians-section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 40px; text-align: center;">
+        <span class="section-tagline">Historias de la Tienda</span>
+        <h2 class="section-title">El Rincón de las Historias</h2>
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="stories-carousel-container">
+        <div class="stories-carousel" id="stories-carousel">
+          
+          <!-- Slide 1 -->
+          <div class="story-slide active">
+            <div class="story-content">
+              <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.15; color: var(--accent-color); margin-bottom: 10px;">
+                <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10zm-14 0v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10z"/>
+              </svg>
+              <p class="story-quote">"Quería aprender a tocar guitarra durante la cuarentena y en Zona de Músicos encontré un modelo de estudio súper cómodo y a un precio muy accesible. La asesoría personalizada por WhatsApp me dio la confianza para empezar."</p>
+              <div class="story-meta">
+                <span class="story-name">Mateo H.</span>
+                <span class="story-instrument">Estudiante de Guitarra</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="story-slide">
+            <div class="story-content">
+              <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.15; color: var(--accent-color); margin-bottom: 10px;">
+                <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10zm-14 0v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10z"/>
+              </svg>
+              <p class="story-quote">"Encontrar repuestos, cañas de saxo y accesorios de mantenimiento a precios convenientes suele ser un dolor de cabeza, pero en ZDM encontré un catálogo completísimo y todo en un solo lugar."</p>
+              <div class="story-meta">
+                <span class="story-name">Valeria L.</span>
+                <span class="story-instrument">Saxofonista e Instructora</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+          <button class="carousel-arrow prev" onclick="moveStorySlide(-1)" aria-label="Historia anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-dots" id="carousel-dots">
+            <span class="dot active" onclick="setStorySlide(0)"></span>
+            <span class="dot" onclick="setStorySlide(1)"></span>
+          </div>
+          <button class="carousel-arrow next" onclick="moveStorySlide(1)" aria-label="Siguiente historia">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- NOVEDADES / FEATURED SECTION --- -->
+  <section id="novedades" class="catalog-section" style="border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="catalog-header" style="text-align: center; margin-bottom: 50px;">
+        <div class="section-header">
+          <span class="section-tagline">Recién Llegado</span>
+          <h2 class="section-title" style="display: inline-block;">Novedades de la Tienda</h2>
+        </div>
+      </div>
+
+      <div id="featured-grid" class="catalog-grid">
+        <!-- Rendered dynamically via JavaScript (Destacados only) -->
+        <p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary);">Cargando novedades...</p>
+      </div>
+
+      <div style="text-align: center; margin-top: 60px;">
+        <a href="catalogo.html" class="btn btn-secondary">Ver Catálogo Completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- TESTIMONIALS SECTION --- -->
+  <section id="testimonios" class="testimonials-section">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+        <span class="section-tagline">Testimonios</span>
+        <h2 class="section-title">Voces de la Comunidad ZM</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-quote">"Compramos el primer ukelele para mi hija y nos asesoraron con una paciencia de
+            oro. Nos regalaron stickers y uñetas. Se nota el cariño y el ambiente familiar de la tienda."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Andrés M.</span>
+            <span class="author-product">Adquirió Ukelele Soprano</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-quote">"Mi tienda favorita para conseguir accesorios y repuestos para mis instrumentos. Excelente variedad de cuadernos de pentagramas, atriles muy resistentes y cuerdas a precios insuperables."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Camila R.</span>
+            <span class="author-product">Adquirió Cuaderno y Cuerdas</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating">★★★★★</div>
+          <p class="testimonial-quote">"Compré una resina y un atril de orquesta. Todo impecable, despacho rápido y te
+            responden al WhatsApp con la amabilidad y cercanía de siempre."</p>
+          <div class="testimonial-author">
+            <span class="author-name">Diego S.</span>
+            <span class="author-product">Adquirió Resina y Atril</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- MINI REVIEWS SUB-SECTION --- -->
+  <section class="reviews-mini-section">
+    <div class="container">
+      <div class="valoracion-overall-box">
+        <span class="valoracion-value">4.87 / 5</span>
+        <div class="valoracion-stars">★★★★★</div>
+        <span class="valoracion-count">Basado en 327 reseñas de clientes</span>
+      </div>
+
+      <div class="reviews-mini-grid">
+        <div class="review-mini-card">"Excelente sonido, ideal para empezar a tocar."</div>
+        <div class="review-mini-card">"Muy buena calidad, se siente profesional."</div>
+        <div class="review-mini-card">"Llegó rápido y en perfecto estado, recomendado."</div>
+        <div class="review-mini-card">"El sonido es increíble para el precio."</div>
+        <div class="review-mini-card">"Perfecto para principiantes, muy fácil de usar."</div>
+        <div class="review-mini-card">"Muy buena construcción, se nota la calidad."</div>
+        <div class="review-mini-card">"Superó mis expectativas totalmente."</div>
+        <div class="review-mini-card">"Lo recomiendo 100%, excelente compra."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- BENEFITS & CONDITIONS SECTION --- -->
+  <section id="beneficios" class="beneficios-section">
+    <div class="container">
+      <div class="beneficios-grid">
+        <!-- Envíos -->
+        <div class="beneficio-card">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <h3 class="beneficio-title">Envíos a todo Chile</h3>
+          <p class="beneficio-text">Entre 2 a 5 días hábiles. Mismo día para retiro en tienda física.</p>
+        </div>
+
+        <!-- Garantía -->
+        <div class="beneficio-card">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="beneficio-title">Garantía ZM</h3>
+          <p class="beneficio-text">Garantía extendida de 30 días para todos nuestros productos seleccionados.</p>
+        </div>
+
+        <!-- Pagos -->
+        <div class="beneficio-card">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+          </div>
+          <h3 class="beneficio-title">Pagos Flexibles</h3>
+          <p class="beneficio-text">Hasta 6 cuotas sin interés mediante pasarela de pago segura.</p>
+        </div>
+
+        <!-- Beneficios generales -->
+        <div class="beneficio-card">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+          </div>
+          <h3 class="beneficio-title">Compra Segura</h3>
+          <p class="beneficio-text">Calidad garantizada, con productos seleccionados y aprobados por músicos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- NEWSLETTER / CONTACT SECTION --- -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="newsletter-info">
+          <h3>Súmate al Club ZM</h3>
+          <p>Déjanos tu correo para avisarte con cariño cada vez que nos lleguen nuevos accesorios, cuadernos de
+            partituras o instrumentos musicales al local.</p>
+        </div>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="text" id="newsletter-name" class="newsletter-input" placeholder="Tu Nombre" required>
+          <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Tu Correo Electrónico"
+            required>
+          <div class="consent-checkboxes">
+            <label class="consent-label">
+              <input type="checkbox" id="newsletter-privacy" required>
+              <span>Acepto la <a href="privacidad.html" target="_blank" class="consent-link">Política de Privacidad</a> para el tratamiento de mis datos con la finalidad de recibir información de ZM.</span>
+            </label>
+            <label class="consent-label">
+              <input type="checkbox" id="newsletter-marketing">
+              <span>Autorizo el envío de ofertas y publicidad personalizada (opcional).</span>
+            </label>
+          </div>
+          <button type="submit" class="newsletter-btn">Suscribirme</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SHOPPING CART DRAWER --- -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h2>Tu Carrito</h2>
+      <button id="cart-close-btn" class="cart-close-btn" aria-label="Cerrar carrito">
+        <span>Cerrar</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div id="cart-items" class="cart-items-container">
+      <!-- Renders dynamically -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total Estimado:</span>
+        <span id="cart-total-price" class="cart-total-price">$0.00</span>
+      </div>
+      <button id="checkout-btn" class="btn btn-primary" style="width: 100%;">Proceder al Pago</button>
+    </div>
+  </div>
+
+  <!-- --- MODAL OVERLAYS (Checkout Flow) --- -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="checkout-modal-close" class="modal-close-btn" aria-label="Cerrar modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3 class="modal-title">Método de Checkout</h3>
+      <p class="modal-description">Elige cómo deseas completar la adquisición de tu instrumento.</p>
+
+      <div class="checkout-options">
+        <button id="checkout-wa-btn" class="checkout-btn">
+          <div class="checkout-btn-text">
+            <span class="checkout-btn-title">Cierre Asistido por WhatsApp</span>
+            <span class="checkout-btn-desc">Envía el detalle del carrito y coordina directamente la entrega con
+              nosotros.</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button id="checkout-gateway-btn" class="checkout-btn">
+          <div class="checkout-btn-text">
+            <span class="checkout-btn-title">Pago Directo en Línea (Débito/Crédito)</span>
+            <span class="checkout-btn-desc">Realiza un pago rápido y seguro a través de nuestra API integrada.</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- MODAL PASARELA DE PAGO MOCK --- -->
+  <div id="gateway-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="gateway-modal-close" class="modal-close-btn" aria-label="Cerrar modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3 class="modal-title">Pasarela de Pago Segura</h3>
+      <p class="modal-description">Introduce tus datos de débito o crédito para procesar tu orden.</p>
+
+      <form id="gateway-form" class="checkout-form">
+        <div class="form-group">
+          <label for="card-name">Nombre en la Tarjeta</label>
+          <input type="text" id="card-name" class="form-control" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <div class="form-group">
+          <label for="card-email">Correo Electrónico</label>
+          <input type="email" id="card-email" class="form-control" placeholder="juan@ejemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label for="card-number">Número de Tarjeta (Simulado)</label>
+          <input type="text" id="card-number" class="form-control" placeholder="4000 1234 5678 9010" required
+            maxlength="19">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="card-expiry">Vencimiento</label>
+            <input type="text" id="card-expiry" class="form-control" placeholder="MM/AA" required maxlength="5">
+          </div>
+          <div class="form-group">
+            <label for="card-cvc">CVC</label>
+            <input type="password" id="card-cvc" class="form-control" placeholder="123" required maxlength="4">
+          </div>
+        </div>
+
+        <button type="submit" id="pay-submit-btn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+          Pagar <span id="gateway-total-price">$0.00</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- --- MODAL COMPRA EXITOSA --- -->
+  <div id="success-modal" class="modal-overlay">
+    <div class="modal-content" style="text-align: center;">
+      <div class="success-checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 class="modal-title">¡Compra Confirmada!</h3>
+      <p class="modal-description" style="margin-bottom: 20px;">El pago se ha procesado exitosamente. Se ha restado del
+        stock en Airtable.</p>
+
+      <div class="success-details">
+        <div class="success-detail-row">
+          <span>Cliente:</span>
+          <span id="success-client-name">--</span>
+        </div>
+        <div class="success-detail-row">
+          <span>ID de Transacción:</span>
+          <span id="success-tx-id" style="font-family: monospace;">ZM-XXXXXX</span>
+        </div>
+        <div class="success-detail-row">
+          <span>Monto Cobrado:</span>
+          <span id="success-amount" class="product-price">$0.00</span>
+        </div>
+      </div>
+
+      <button id="success-close-btn" class="btn btn-primary" style="width: 100%;">Volver a la Tienda</button>
+    </div>
+  </div>
+
+  <!-- --- FOOTER --- -->
+  <footer style="padding: 60px 0 40px; border-top: 1px solid var(--border-color); background-color: #0b0b0b;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
+      <a href="index.html" class="footer-logo" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none;">
+        <img src="assets/img/logo.png" alt="Zona de Músicos Logo" style="height: 48px; width: auto; border-radius: 4px;">
+        <span style="font-family: var(--font-alt); font-size: 20px; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 2px;">Zona de Músicos</span>
+      </a>
+      <p style="font-size: 13px; color: var(--text-secondary);">&copy; 2026 Zona de Músicos. Todos los derechos reservados. Tu tienda de música de accesorios e instrumentos.</p>
+      <div class="footer-socials" style="display: flex; gap: 20px; margin-top: 10px;">
+        <a href="#" class="social-link" aria-label="Instagram de Zona de Músicos">Instagram</a>
+        <a href="#" class="social-link" aria-label="YouTube de Zona de Músicos">YouTube</a>
+        <a href="privacidad.html" class="social-link" aria-label="Política de Privacidad">Privacidad</a>
+        <a href="admin.php" class="social-link" aria-label="Panel de Administración ZM">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  </main>
+
+  <!-- --- SCRIPTS --- -->
+  <script src="assets/js/cookie-consent.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

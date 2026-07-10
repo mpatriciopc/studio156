@@ -1,0 +1,29 @@
+- CSV
+
+7e6c6c, f87575, ffa9a3, d8a48f,000714
+
+  - With #
+
+#7e6c6c, #f87575, #ffa9a3, #d8a48f, #000714
+
+  - Array
+
+  ["7e6c6c", "f87575", "ffa9a3", "d8a48f", "000714"]
+
+  - Object
+
+{ "Taupe": "7e6c6c", "Grapefruit Pink": "f87575", "Powder Blush": "ffa9a3", "Light Bronze": "d8a48f", "Ink Black": "000714" }
+
+- Extended Array
+
+[{ "name": "Taupe", "hex": "7e6c6c", "rgb": [126, 108, 108], "cmyk": [0, 14, 14, 51], "hsb": [0, 14, 49], "hsl": [0, 8, 46], "lab": [47, 7, 3] }, { "name": "Grapefruit Pink", "hex": "f87575", "rgb": [248, 117, 117], "cmyk": [0, 53, 53, 3], "hsb": [0, 53, 97], "hsl": [0, 90, 72], "lab": [65, 50, 24] }, { "name": "Powder Blush", "hex": "ffa9a3", "rgb": [255, 169, 163], "cmyk": [0, 34, 36, 0], "hsb": [4, 36, 100], "hsl": [4, 100, 82], "lab": [77, 31, 16] }, { "name": "Light Bronze", "hex": "d8a48f", "rgb": [216, 164, 143], "cmyk": [0, 24, 34, 15], "hsb": [17, 34, 85], "hsl": [17, 48, 70], "lab": [72, 16, 18] }, { "name": "Ink Black", "hex": "000714", "rgb": [0, 7, 20], "cmyk": [100, 65, 0, 92], "hsb": [219, 100, 8], "hsl": [219, 100, 4], "lab": [2, 0, -7] }]
+
+  - XML
+
+< palette >
+  <color name="Taupe" hex="7e6c6c" r="126" g="108" b="108" />
+  <color name="Grapefruit Pink" hex="f87575" r="248" g="117" b="117" />
+  <color name="Powder Blush" hex="ffa9a3" r="255" g="169" b="163" />
+  <color name="Light Bronze" hex="d8a48f" r="216" g="164" b="143" />
+  <color name="Ink Black" hex="000714" r="0" g="7" b="20" />
+</palette >
