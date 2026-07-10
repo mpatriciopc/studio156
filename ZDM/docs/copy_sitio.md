@@ -150,3 +150,7 @@ Este documento reúne todo el texto, narrativa, microcopys y catálogo de produc
     *   `"Muy buena construcción, se nota la calidad."`
     *   `"Superó mis expectativas totalmente."`
     *   `"Lo recomiendo 100%, excelente compra."`
+
+## 13. Historia de Zona de Músicos
+
+`"Zona de músicos nació en pandemia con la idea de acercar la música a todas las personas, ofreciendo instrumentos musicales económicos, accesibles y de buena calidad. Nuestro propósito es que tanto quienes están comenzando como quienes ya tienen experiencia puedan encontrar el instrumento que necesitan a un precio conveniente. Creemos que todos deberían tener la oportunidad de disfrutar y aprender algún instrumento musical y que encuentren todo lo que se necesita para la mantencion o accesorios en un solo lugar."`

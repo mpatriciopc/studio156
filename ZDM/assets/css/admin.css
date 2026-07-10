@@ -33,6 +33,9 @@
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .admin-logo span { color: var(--accent-color); font-style: italic; }

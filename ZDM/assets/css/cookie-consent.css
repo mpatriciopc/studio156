@@ -29,7 +29,7 @@
   right: 0;
   z-index: 9999;
   background: #0e0e0e;
-  border-top: 1px solid #cca025;
+  border-top: 1px solid #fe174f;
   padding: 28px 0;
   transform: translateY(100%);
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -70,7 +70,7 @@
 }
 
 .cc-link {
-  color: #cca025;
+  color: #fe174f;
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.2s ease;
@@ -94,7 +94,7 @@
   letter-spacing: 0.8px;
   text-transform: uppercase;
   padding: 12px 24px;
-  border: 1px solid #cca025;
+  border: 1px solid #fe174f;
   border-radius: 0;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -103,35 +103,35 @@
 
 /* Los 3 botones tienen el MISMO nivel visual (Ley 21.719) */
 .cc-btn-accept {
-  background: #cca025;
+  background: #fe174f;
   color: #080808;
-  border-color: #cca025;
+  border-color: #fe174f;
 }
 
 .cc-btn-accept:hover {
-  background: #b58d1e;
-  border-color: #b58d1e;
+  background: #d12b54;
+  border-color: #d12b54;
 }
 
 .cc-btn-reject {
   background: transparent;
-  color: #cca025;
-  border-color: #cca025;
+  color: #fe174f;
+  border-color: #fe174f;
 }
 
 .cc-btn-reject:hover {
-  background: #cca025;
+  background: #fe174f;
   color: #080808;
 }
 
 .cc-btn-configure {
   background: transparent;
-  color: #cca025;
-  border-color: #cca025;
+  color: #fe174f;
+  border-color: #fe174f;
 }
 
 .cc-btn-configure:hover {
-  background: #cca025;
+  background: #fe174f;
   color: #080808;
 }
 
@@ -244,7 +244,7 @@
 }
 
 .cc-toggle input:checked + .cc-toggle-slider {
-  background-color: #cca025;
+  background-color: #fe174f;
 }
 
 .cc-toggle input:checked + .cc-toggle-slider::before {
@@ -288,12 +288,12 @@
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: #cca025;
+  accent-color: #fe174f;
   cursor: pointer;
 }
 
 .consent-link {
-  color: #cca025;
+  color: #fe174f;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
