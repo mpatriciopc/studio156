@@ -682,7 +682,7 @@ function runWhatsAppCheckout() {
   message += `\nTotal Estimado: $${total.toLocaleString('es-CL')}\n\n¿Me podrían indicar cómo coordinar la entrega y el pago? ¡Muchas gracias!`;
   
   const encodedText = encodeURIComponent(message);
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=56912345678&text=${encodedText}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=56940127085&text=${encodedText}`;
   
   closeModal(checkoutModal);
   window.open(whatsappUrl, '_blank');
