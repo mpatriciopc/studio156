@@ -942,3 +942,13 @@ window.setStorySlide = function(slideIndex) {
   slides[currentStorySlide].classList.add('active');
   if (dots[currentStorySlide]) dots[currentStorySlide].classList.add('active');
 };
+
+// --- 3D Carousel Logic ---
+let carousel3DTheta = 0;
+window.rotateCarousel3D = function(direction) {
+  const ring = document.getElementById('carousel-3d-ring');
+  if (!ring) return;
+  
+  carousel3DTheta += (direction * -90);
+  ring.style.transform = `rotateY(${carousel3DTheta}deg)`;
+};
