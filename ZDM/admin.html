@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZM Admin | Gestión de Productos y Transacciones</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <style>
+        /* Estilos específicos de la interfaz SPA */
+        .spa-hidden {
+            display: none !important;
+        }
+        
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: var(--bg-color);
+        }
+        
+        .login-container {
+            max-width: 420px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 48px 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .login-logo {
+            font-family: var(--font-giant);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .login-logo span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .login-subtitle {
+            font-family: var(--font-alt);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .admin-nav-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-alt);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .tab-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        .tab-btn.active {
+            color: var(--text-primary);
+            background-color: rgba(254, 23, 79, 0.08);
+            border-color: var(--accent-color);
+        }
+        
+        /* Estilos de tabla de logs */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-family: var(--font-alt);
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-success {
+            background-color: rgba(52, 199, 89, 0.15);
+            color: #34c759;
+            border: 1px solid rgba(52, 199, 89, 0.3);
+        }
+        
+        .badge-error {
+            background-color: rgba(255, 59, 48, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 59, 48, 0.3);
+        }
+        
+        .badge-warning {
+            background-color: rgba(255, 149, 0, 0.15);
+            color: #ff9500;
+            border: 1px solid rgba(255, 149, 0, 0.3);
+        }
+        
+        .badge-info {
+            background-color: rgba(142, 142, 147, 0.15);
+            color: #aeaea2;
+            border: 1px solid rgba(142, 142, 147, 0.3);
+        }
+        
+        .btn-clear-logs {
+            background: none;
+            border: 1px solid #ff3b30;
+            color: #ff3b30;
+            font-family: var(--font-alt);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .btn-clear-logs:hover {
+            background-color: rgba(255, 59, 48, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== VISTA: INICIO DE SESIÓN ==================== -->
+    <div id="login-view" class="login-wrapper spa-hidden">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="assets/img/logo.png" alt="ZM Logo" style="height: 38px; width: auto; border-radius: 4px;">
+                <span>Admin</span>
+            </div>
+            <div class="login-subtitle">Panel de Control</div>
+            
+            <div id="login-alert" class="admin-alert error spa-hidden"></div>
+            
+            <form id="login-form" onsubmit="handleLoginSubmit(event)" class="admin-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-add" style="width: 100%; justify-content: center; margin-top: 10px;">
+                    Ingresar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== VISTA: DASHBOARD PRINCIPAL ==================== -->
+    <div id="dashboard-view" class="admin-wrapper spa-hidden">
+        <div class="container">
+            <!-- Header -->
+            <div class="admin-header">
+                <div class="admin-header-left">
+                    <a href="index.html" class="admin-logo" style="text-decoration: none;">
+                        <img src="assets/img/logo.png" alt="ZM Logo" style="height: 38px; width: auto; border-radius: 4px;">
+                    </a>
+                    <span class="admin-badge">Admin</span>
+                </div>
+                <div class="admin-header-right">
+                    <span id="admin-user-display" class="admin-user">Cargando...</span>
+                    <a href="index.html" target="_blank" class="btn-view-site">Ver Tienda</a>
+                    <button onclick="handleLogout()" class="btn-logout">Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="admin-nav-tabs">
+                <button id="tab-products" class="tab-btn active" onclick="switchTab('products')">Productos</button>
+                <button id="tab-logs" class="tab-btn" onclick="switchTab('logs')">Transacciones (Logs)</button>
+            </div>
+
+            <!-- Global Alerts inside dashboard -->
+            <div id="dashboard-alert" class="admin-alert spa-hidden" style="margin-bottom: 24px;"></div>
+
+            <!-- TAB: PRODUCTS -->
+            <div id="tab-content-products">
+                <!-- Stats -->
+                <div class="admin-stats">
+                    <div class="stat-card active" data-filter="all" onclick="setProductFilter('all', this)">
+                        <span id="stat-total" class="stat-value">0</span>
+                        <span class="stat-label">Productos</span>
+                    </div>
+                    <div class="stat-card" data-filter="Instrumentos" onclick="setProductFilter('Instrumentos', this)">
+                        <span id="stat-instruments" class="stat-value">0</span>
+                        <span class="stat-label">Instrumentos</span>
+                    </div>
+                    <div class="stat-card" data-filter="Accesorios" onclick="setProductFilter('Accesorios', this)">
+                        <span id="stat-accessories" class="stat-value">0</span>
+                        <span class="stat-label">Accesorios</span>
+                    </div>
+                    <div class="stat-card" data-filter="destacado" onclick="setProductFilter('destacado', this)">
+                        <span id="stat-featured" class="stat-value">0</span>
+                        <span class="stat-label">Destacados</span>
+                    </div>
+                    <div class="stat-card" data-filter="stock-bajo" onclick="setProductFilter('stock-bajo', this)">
+                        <span id="stat-low-stock" class="stat-value">0</span>
+                        <span class="stat-label">Stock Bajo</span>
+                    </div>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="admin-toolbar">
+                    <h2>Catálogo de Productos</h2>
+                    <div class="admin-toolbar-actions">
+                        <div class="admin-search-container">
+                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="admin-search-input" placeholder="Buscar por nombre, SKU..." oninput="filterAdminProducts()">
+                        </div>
+                        <button class="btn-add" onclick="openCreateModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            Nuevo Producto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>SKU</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Dest.</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Renders dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB: LOGS -->
+            <div id="tab-content-logs" class="spa-hidden">
+                <div class="admin-toolbar">
+                    <h2>Registro de Transacciones</h2>
+                    <button class="btn-clear-logs" onclick="openClearLogsModal()">
+                        Vaciar Registro
+                    </button>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha y Hora</th>
+                                <th>Nivel</th>
+                                <th>IP</th>
+                                <th>Mensaje</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body">
+                            <!-- Renders dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: CREAR/EDITAR PRODUCTO ==================== -->
+    <div id="product-modal" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 id="modal-title">Nuevo Producto</h3>
+                <button class="btn-modal-close" onclick="closeModal('product-modal')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div id="modal-alert" class="admin-alert error spa-hidden" style="margin: 16px 24px 0 24px;"></div>
+
+            <form id="product-form" onsubmit="handleProductFormSubmit(event)" enctype="multipart/form-data" class="admin-form">
+                <input type="hidden" id="form-action" value="create">
+                <input type="hidden" id="form-edit-sku" value="">
+
+                <div class="form-group">
+                    <label for="prod_nombre">Nombre del Producto *</label>
+                    <input type="text" id="prod_nombre" required placeholder="Ej: Guitarra Clásica Aura">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prod_categoria">Categoría *</label>
+                        <select id="prod_categoria" required>
+                            <option value="Instrumentos">Instrumentos</option>
+                            <option value="Accesorios">Accesorios</option>
+                            <option value="Cuadernos">Cuadernos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod_estado">Estado *</label>
+                        <select id="prod_estado" required>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado (Excelente)">Usado (Excelente)</option>
+                            <option value="Usado (Buen Estado)">Usado (Buen Estado)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prod_precio">Precio ($ CLP) *</label>
+                        <input type="number" id="prod_precio" required min="1" placeholder="Ej: 85000">
+                    </div>
+                    <div class="form-group">
+                        <label for="prod_stock">Cantidad en Stock *</label>
+                        <input type="number" id="prod_stock" required min="0" placeholder="Ej: 10">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="prod_descripcion">Descripción Detallada *</label>
+                    <textarea id="prod_descripcion" required rows="4" placeholder="Describe los materiales, sonido, detalles del artículo..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="prod_foto">Imagen del Producto</label>
+                    <input type="file" id="prod_foto" accept="image/*">
+                    <span class="file-help">Solo JPG, PNG, WebP o GIF. Máximo 5 MB. Si editas y dejas en blanco, se conservará la imagen actual.</span>
+                    <div id="edit-img-preview" class="spa-hidden" style="margin-top: 10px;">
+                        <span style="font-size: 11px; color: var(--text-secondary); display: block; margin-bottom: 4px;">Imagen actual:</span>
+                        <img id="edit-preview-src" src="" alt="Vista previa" style="height: 60px; border-radius: 4px; border: 1px solid var(--border-color);">
+                    </div>
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="prod_destacado">
+                    <label for="prod_destacado">Destacar producto en la portada principal</label>
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn-logout" onclick="closeModal('product-modal')">Cancelar</button>
+                    <button type="submit" class="btn-add">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: ELIMINAR PRODUCTO ==================== -->
+    <div id="delete-modal" class="admin-modal-overlay">
+        <div class="admin-modal delete-modal">
+            <div class="admin-modal-header">
+                <h3>Eliminar Producto</h3>
+                <button class="btn-modal-close" onclick="closeModal('delete-modal')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="admin-form">
+                <p>¿Estás seguro de que deseas eliminar permanentemente el producto <strong id="delete-prod-name"></strong>?</p>
+                <p class="delete-warning">Esta acción no se puede deshacer y eliminará la imagen asociada del servidor.</p>
+                
+                <input type="hidden" id="delete-prod-sku">
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn-logout" onclick="closeModal('delete-modal')">Cancelar</button>
+                    <button type="button" onclick="confirmDelete()" class="btn-add btn-danger" style="background-color: #ff3b30; border-color: #ff3b30;">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: VACIAR LOGS ==================== -->
+    <div id="clear-logs-modal" class="admin-modal-overlay">
+        <div class="admin-modal delete-modal">
+            <div class="admin-modal-header">
+                <h3>Vaciar Registro</h3>
+                <button class="btn-modal-close" onclick="closeModal('clear-logs-modal')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="admin-form">
+                <p>¿Estás seguro de que deseas vaciar permanentemente todo el historial de transacciones del archivo de logs?</p>
+                <p class="delete-warning">Esta acción borrará todas las líneas registradas en `transactions.log`.</p>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn-logout" onclick="closeModal('clear-logs-modal')">Cancelar</button>
+                    <button type="button" onclick="confirmClearLogs()" class="btn-add btn-danger" style="background-color: #ff3b30; border-color: #ff3b30;">Vaciar Registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LOGICA SPA DE CONTROL DE VISTAS Y DATOS ==================== -->
+    <script>
+        const API_URL = 'admin_api.php';
+        
+        let allProducts = [];
+        let currentFilter = 'all';
+        let currentTab = 'products';
+
+        // Al iniciar la carga de la página
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthentication();
+        });
+
+        // 1. Verificación de Autenticación
+        async function checkAuthentication() {
+            try {
+                const response = await fetch(`${API_URL}?action=check_auth`);
+                const data = await response.json();
+                
+                if (data.authenticated) {
+                    showDashboard(data.username);
+                } else {
+                    showLogin();
+                }
+            } catch (error) {
+                console.error('Error verificando sesión:', error);
+                showLogin();
+            }
+        }
+
+        // 2. Control de Cambios de Vista
+        function showLogin() {
+            document.getElementById('dashboard-view').classList.add('spa-hidden');
+            document.getElementById('login-view').classList.remove('spa-hidden');
+        }
+
+        function showDashboard(username) {
+            document.getElementById('login-view').classList.add('spa-hidden');
+            document.getElementById('dashboard-view').classList.remove('spa-hidden');
+            document.getElementById('admin-user-display').innerText = username;
+            
+            // Cargar datos del catálogo y logs
+            loadAdminData();
+        }
+
+        // 3. Procesar Envío del Formulario de Inicio de Sesión
+        async function handleLoginSubmit(event) {
+            event.preventDefault();
+            const alertDiv = document.getElementById('login-alert');
+            alertDiv.classList.add('spa-hidden');
+            
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            
+            const formData = new FormData();
+            formData.append('username', usernameInput);
+            formData.append('password', passwordInput);
+            
+            try {
+                const response = await fetch(`${API_URL}?action=login`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showDashboard(data.username);
+                    document.getElementById('login-form').reset();
+                } else {
+                    alertDiv.innerText = data.error || 'Usuario o contraseña incorrectos.';
+                    alertDiv.classList.remove('spa-hidden');
+                }
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+                alertDiv.innerText = 'Error de conexión con el servidor. Inténtalo de nuevo.';
+                alertDiv.classList.remove('spa-hidden');
+            }
+        }
+
+        // 4. Cerrar Sesión
+        async function handleLogout() {
+            try {
+                const response = await fetch(`${API_URL}?action=logout`);
+                const data = await response.json();
+                if (data.success) {
+                    showLogin();
+                }
+            } catch (error) {
+                console.error('Error cerrando sesión:', error);
+                showLogin();
+            }
+        }
+
+        // 5. Cargar Datos de Productos y Logs
+        async function loadAdminData() {
+            try {
+                const response = await fetch(`${API_URL}?action=get_data`);
+                if (response.status === 401) {
+                    showLogin();
+                    return;
+                }
+                
+                const data = await response.json();
+                allProducts = data.products || [];
+                
+                // Actualizar contadores y estadísticas
+                updateStats(data.stats);
+                
+                // Renderizar tablas
+                renderProductsTable(allProducts);
+                renderLogsTable(data.logs || []);
+                
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
+                showGlobalAlert('No se pudo establecer conexión para cargar el catálogo.', 'error');
+            }
+        }
+
+        // 6. Actualizar Estadísticas
+        function updateStats(stats) {
+            if (!stats) return;
+            document.getElementById('stat-total').innerText = stats.total || 0;
+            document.getElementById('stat-instruments').innerText = stats.instruments || 0;
+            document.getElementById('stat-accessories').innerText = stats.accessories || 0;
+            document.getElementById('stat-featured').innerText = stats.featured || 0;
+            
+            const lowStockBadge = document.getElementById('stat-low-stock');
+            lowStockBadge.innerText = stats.lowStock || 0;
+            if (stats.lowStock > 0) {
+                lowStockBadge.classList.add('stock-low');
+            } else {
+                lowStockBadge.classList.remove('stock-low');
+            }
+        }
+
+        // 7. Renderizar Tabla de Productos
+        function renderProductsTable(products) {
+            const tbody = document.getElementById('products-table-body');
+            tbody.innerHTML = '';
+            
+            if (products.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                            No hay productos en el catálogo. Haz clic en "Nuevo Producto" para empezar.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = 'product-row';
+                
+                // Formato de precio chileno ($ CLP)
+                const priceFormatted = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(p.precio);
+                
+                tr.innerHTML = `
+                    <td><img class="product-thumb" src="${p.foto}" alt="${p.nombre}" onerror="this.src='assets/acoustic_guitar.png'"></td>
+                    <td>${escapeHTML(p.nombre)}</td>
+                    <td class="sku-cell">${escapeHTML(p.sku)}</td>
+                    <td><span class="category-tag">${escapeHTML(p.categoria)}</span></td>
+                    <td>${escapeHTML(p.estado)}</td>
+                    <td class="price-cell">${priceFormatted}</td>
+                    <td class="stock-cell ${p.stock <= 2 ? 'stock-low' : 'stock-ok'}">${p.stock}</td>
+                    <td><span class="featured-badge ${!p.destacado ? 'inactive' : ''}"></span></td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn-action" onclick='openEditModal(${JSON.stringify(p).replace(/'/g, "&apos;")})'>Editar</button>
+                            <button class="btn-action btn-delete" onclick='openDeleteModal("${escapeHTML(p.sku)}", "${escapeHTML(p.nombre)}")'>Eliminar</button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 8. Renderizar Tabla de Logs
+        function renderLogsTable(logs) {
+            const tbody = document.getElementById('logs-table-body');
+            tbody.innerHTML = '';
+            
+            if (logs.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                            No hay transacciones registradas.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            logs.forEach(log => {
+                const tr = document.createElement('tr');
+                
+                let badgeClass = 'badge-info';
+                if (log.level === 'SUCCESS' || log.level === 'INFO') badgeClass = 'badge-success';
+                if (log.level === 'ERROR') badgeClass = 'badge-error';
+                if (log.level === 'WARNING') badgeClass = 'badge-warning';
+                
+                tr.innerHTML = `
+                    <td style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); white-space: nowrap;">${escapeHTML(log.timestamp)}</td>
+                    <td><span class="badge ${badgeClass}">${escapeHTML(log.level)}</span></td>
+                    <td style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary);">${escapeHTML(log.ip)}</td>
+                    <td>${escapeHTML(log.message)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 9. Alternar entre las pestañas del Panel
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            if (tabId === 'products') {
+                document.getElementById('tab-content-products').classList.remove('spa-hidden');
+                document.getElementById('tab-content-logs').classList.add('spa-hidden');
+            } else {
+                document.getElementById('tab-content-products').classList.add('spa-hidden');
+                document.getElementById('tab-content-logs').classList.remove('spa-hidden');
+                // Recargar para refrescar logs
+                loadAdminData();
+            }
+        }
+
+        // 10. Filtrar por Tarjetas de Estadística
+        function setProductFilter(filterType, element) {
+            currentFilter = filterType;
+            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            applyFilters();
+        }
+
+        // 11. Filtrar por Input de Búsqueda
+        function filterAdminProducts() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('admin-search-input').value.toLowerCase().trim();
+            
+            let filtered = allProducts;
+            
+            // Aplicar filtro de tarjeta de estadística
+            if (currentFilter === 'Instrumentos') {
+                filtered = filtered.filter(p => p.categoria === 'Instrumentos');
+            } else if (currentFilter === 'Accesorios') {
+                filtered = filtered.filter(p => p.categoria === 'Accesorios');
+            } else if (currentFilter === 'destacado') {
+                filtered = filtered.filter(p => p.destacado);
+            } else if (currentFilter === 'stock-bajo') {
+                filtered = filtered.filter(p => p.stock <= 2);
+            }
+            
+            // Aplicar búsqueda por texto
+            if (query) {
+                filtered = filtered.filter(p => 
+                    p.nombre.toLowerCase().includes(query) || 
+                    p.sku.toLowerCase().includes(query) || 
+                    p.descripcion.toLowerCase().includes(query)
+                );
+            }
+            
+            renderProductsTable(filtered);
+        }
+
+        // 12. Control de Modales de Formulario CRUD
+        function openCreateModal() {
+            document.getElementById('modal-title').innerText = 'Nuevo Producto';
+            document.getElementById('form-action').value = 'create';
+            document.getElementById('form-edit-sku').value = '';
+            document.getElementById('product-form').reset();
+            document.getElementById('edit-img-preview').classList.add('spa-hidden');
+            document.getElementById('modal-alert').classList.add('spa-hidden');
+            
+            openModal('product-modal');
+        }
+
+        function openEditModal(product) {
+            document.getElementById('modal-title').innerText = 'Editar Producto';
+            document.getElementById('form-action').value = 'update';
+            document.getElementById('form-edit-sku').value = product.sku;
+            document.getElementById('modal-alert').classList.add('spa-hidden');
+            
+            // Llenar campos
+            document.getElementById('prod_nombre').value = product.nombre;
+            document.getElementById('prod_categoria').value = product.categoria;
+            document.getElementById('prod_estado').value = product.estado;
+            document.getElementById('prod_precio').value = product.precio;
+            document.getElementById('prod_stock').value = product.stock;
+            document.getElementById('prod_descripcion').value = product.descripcion;
+            document.getElementById('prod_destacado').checked = !!product.destacado;
+            
+            // Imagen anterior
+            if (product.foto) {
+                document.getElementById('edit-preview-src').src = product.foto;
+                document.getElementById('edit-img-preview').classList.remove('spa-hidden');
+            } else {
+                document.getElementById('edit-img-preview').classList.add('spa-hidden');
+            }
+            
+            openModal('product-modal');
+        }
+
+        async function handleProductFormSubmit(event) {
+            event.preventDefault();
+            const action = document.getElementById('form-action').value;
+            const alertDiv = document.getElementById('modal-alert');
+            alertDiv.classList.add('spa-hidden');
+            
+            const formData = new FormData();
+            formData.append('nombre', document.getElementById('prod_nombre').value);
+            formData.append('categoria', document.getElementById('prod_categoria').value);
+            formData.append('estado', document.getElementById('prod_estado').value);
+            formData.append('precio', document.getElementById('prod_precio').value);
+            formData.append('stock', document.getElementById('prod_stock').value);
+            formData.append('descripcion', document.getElementById('prod_descripcion').value);
+            formData.append('destacado', document.getElementById('prod_destacado').checked);
+            
+            if (action === 'update') {
+                formData.append('edit_sku', document.getElementById('form-edit-sku').value);
+            }
+            
+            const fileField = document.getElementById('prod_foto');
+            if (fileField.files.length > 0) {
+                formData.append('foto', fileField.files[0]);
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}?action=${action}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    closeModal('product-modal');
+                    showGlobalAlert(action === 'create' ? 'Producto creado exitosamente.' : 'Producto actualizado exitosamente.', 'success');
+                    loadAdminData();
+                } else {
+                    alertDiv.innerText = data.error || 'Ocurrió un error al procesar el producto.';
+                    alertDiv.classList.remove('spa-hidden');
+                }
+            } catch (error) {
+                console.error('Error al guardar el producto:', error);
+                alertDiv.innerText = 'Error al conectar con el servidor para guardar el producto.';
+                alertDiv.classList.remove('spa-hidden');
+            }
+        }
+
+        // 13. Control de Modal de Eliminación
+        function openDeleteModal(sku, nombre) {
+            document.getElementById('delete-prod-sku').value = sku;
+            document.getElementById('delete-prod-name').innerText = nombre;
+            openModal('delete-modal');
+        }
+
+        async function confirmDelete() {
+            const sku = document.getElementById('delete-prod-sku').value;
+            const formData = new FormData();
+            formData.append('delete_sku', sku);
+            
+            try {
+                const response = await fetch(`${API_URL}?action=delete`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    closeModal('delete-modal');
+                    showGlobalAlert('Producto eliminado permanentemente del servidor.', 'success');
+                    loadAdminData();
+                } else {
+                    showGlobalAlert(data.error || 'No se pudo eliminar el producto.', 'error');
+                }
+            } catch (error) {
+                console.error('Error eliminando producto:', error);
+                showGlobalAlert('Error al conectar con el servidor para eliminar el producto.', 'error');
+            }
+        }
+
+        // 14. Control de Modal de Vaciado de Logs
+        function openClearLogsModal() {
+            openModal('clear-logs-modal');
+        }
+
+        async function confirmClearLogs() {
+            try {
+                const response = await fetch(`${API_URL}?action=clear_logs`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    closeModal('clear-logs-modal');
+                    showGlobalAlert('Registro de transacciones vaciado exitosamente.', 'success');
+                    loadAdminData();
+                } else {
+                    const data = await response.json();
+                    showGlobalAlert(data.error || 'No se pudo vaciar el registro.', 'error');
+                }
+            } catch (error) {
+                console.error('Error vaciando logs:', error);
+                showGlobalAlert('Error al conectar con el servidor para vaciar los logs.', 'error');
+            }
+        }
+
+        // 15. Auxiliares de Visualización de Alertas y Modales
+        function showGlobalAlert(message, type) {
+            const alertDiv = document.getElementById('dashboard-alert');
+            alertDiv.className = `admin-alert ${type}`;
+            alertDiv.innerText = message;
+            alertDiv.classList.remove('spa-hidden');
+            
+            // Auto cerrar en 6 segundos
+            setTimeout(() => {
+                alertDiv.classList.add('spa-hidden');
+            }, 6000);
+        }
+
+        // Abrir y Cerrar Modales
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.style.display = 'flex';
+                setTimeout(() => m.classList.add('visible'), 50);
+            }
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.classList.remove('visible');
+                setTimeout(() => m.style.display = 'none', 300);
+            }
+        }
+
+        // Escapar caracteres peligrosos
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
