@@ -38,6 +38,12 @@
     gap: 10px;
 }
 
+.admin-logo img {
+    height: 38px;
+    width: auto;
+    border-radius: 4px;
+}
+
 .admin-logo span { color: var(--accent-color); font-style: italic; }
 
 .admin-badge {

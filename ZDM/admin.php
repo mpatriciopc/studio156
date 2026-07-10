@@ -271,8 +271,7 @@ $lowStock = count(array_filter($products, function($p) { return $p['stock'] <= 2
             <div class="admin-header">
                 <div class="admin-header-left">
                     <a href="index.html" class="admin-logo" style="text-decoration: none;">
-                        <img src="assets/img/logo.png" alt="ZM Logo" style="height: 32px; width: auto; border-radius: 4px;">
-                        <span>ZM<span>.</span></span>
+                        <img src="assets/img/logo.png" alt="ZM Logo" style="height: 38px; width: auto; border-radius: 4px;">
                     </a>
                     <span class="admin-badge">Admin</span>
                 </div>
