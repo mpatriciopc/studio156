@@ -410,13 +410,38 @@ header.scrolled .logo img {
 
 /* --- MANIFESTO SECTION (ZDM RUBY RED) --- */
 .manifesto-section {
+  position: relative;
   background-color: var(--accent-hover); /* ZDM Ruby Red #d12b54 */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0) 20px,
+    rgba(255, 255, 255, 0.025) 20px,
+    rgba(255, 255, 255, 0.025) 40px
+  );
   color: var(--text-primary);
   padding: 120px 0;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  position: relative;
   z-index: 5;
+  overflow: hidden;
+}
+
+.manifesto-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url('../img/logo.png');
+  background-repeat: repeat;
+  background-size: 70px auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.06; /* Subtly visible watermark */
+  transform: rotate(45deg);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .manifesto-grid {
