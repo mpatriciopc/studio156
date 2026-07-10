@@ -911,3 +911,34 @@ function setupEventListeners() {
     }
   });
 }
+
+// --- STORIES CAROUSEL LOGIC ---
+let currentStorySlide = 0;
+
+window.moveStorySlide = function(direction) {
+  const slides = document.querySelectorAll('.story-slide');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  if (slides.length === 0) return;
+
+  slides[currentStorySlide].classList.remove('active');
+  if (dots[currentStorySlide]) dots[currentStorySlide].classList.remove('active');
+
+  currentStorySlide = (currentStorySlide + direction + slides.length) % slides.length;
+
+  slides[currentStorySlide].classList.add('active');
+  if (dots[currentStorySlide]) dots[currentStorySlide].classList.add('active');
+};
+
+window.setStorySlide = function(slideIndex) {
+  const slides = document.querySelectorAll('.story-slide');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  if (slides.length === 0 || slideIndex < 0 || slideIndex >= slides.length) return;
+
+  slides[currentStorySlide].classList.remove('active');
+  if (dots[currentStorySlide]) dots[currentStorySlide].classList.remove('active');
+
+  currentStorySlide = slideIndex;
+
+  slides[currentStorySlide].classList.add('active');
+  if (dots[currentStorySlide]) dots[currentStorySlide].classList.add('active');
+};

@@ -192,37 +192,63 @@
   <!-- --- MUSICIANS SECTION (HISTORIAS DE MÚSICOS) --- -->
   <section id="relatos" class="musicians-section">
     <div class="container">
-      <div class="section-header" style="margin-bottom: 50px;">
+      <div class="section-header" style="margin-bottom: 40px; text-align: center;">
         <span class="section-tagline">Historias de la Tienda</span>
         <h2 class="section-title">El Rincón de las Historias</h2>
       </div>
 
-      <div class="musician-card">
-        <div class="musician-image-wrapper">
-          <img src="assets/acoustic_guitar.png" alt="Mateo H. tocando guitarra clásica Aura" class="musician-image">
-        </div>
-        <div class="musician-content">
-          <p class="musician-quote">"Quería aprender a tocar guitarra durante la cuarentena y en Zona de Músicos encontré un modelo de estudio súper cómodo y a un precio muy accesible. La asesoría personalizada por WhatsApp me dio la confianza para empezar."</p>
-          <div class="musician-meta">
-            <span class="musician-name">Mateo H.</span>
-            <span class="musician-instrument">Estudiante de Guitarra</span>
+      <!-- Carousel Container -->
+      <div class="stories-carousel-container">
+        <div class="stories-carousel" id="stories-carousel">
+          
+          <!-- Slide 1 -->
+          <div class="story-slide active">
+            <div class="story-content">
+              <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.15; color: var(--accent-color); margin-bottom: 10px;">
+                <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10zm-14 0v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10z"/>
+              </svg>
+              <p class="story-quote">"Quería aprender a tocar guitarra durante la cuarentena y en Zona de Músicos encontré un modelo de estudio súper cómodo y a un precio muy accesible. La asesoría personalizada por WhatsApp me dio la confianza para empezar."</p>
+              <div class="story-meta">
+                <span class="story-name">Mateo H.</span>
+                <span class="story-instrument">Estudiante de Guitarra</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="musician-card">
-        <div class="musician-image-wrapper">
-          <img src="assets/saxophone.png" alt="Valeria L. con saxofón alto Consonante" class="musician-image">
-        </div>
-        <div class="musician-content">
-          <p class="musician-quote">"Encontrar repuestos, cañas de saxo y accesorios de mantenimiento a precios convenientes suele ser un dolor de cabeza, pero en ZDM encontré un catálogo completísimo y todo en un solo lugar."</p>
-          <div class="musician-meta">
-            <span class="musician-name">Valeria L.</span>
-            <span class="musician-instrument">Saxofonista e Instructora</span>
+          <!-- Slide 2 -->
+          <div class="story-slide">
+            <div class="story-content">
+              <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.15; color: var(--accent-color); margin-bottom: 10px;">
+                <path d="M14.017 21v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10zm-14 0v-7.391c0-5.704 3.748-9.762 9-10.161v2.734c-2.42 1.012-4 2.988-4 5.704h5v9.114h-10z"/>
+              </svg>
+              <p class="story-quote">"Encontrar repuestos, cañas de saxo y accesorios de mantenimiento a precios convenientes suele ser un dolor de cabeza, pero en ZDM encontré un catálogo completísimo y todo en un solo lugar."</p>
+              <div class="story-meta">
+                <span class="story-name">Valeria L.</span>
+                <span class="story-instrument">Saxofonista e Instructora</span>
+              </div>
+            </div>
           </div>
+
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+          <button class="carousel-arrow prev" onclick="moveStorySlide(-1)" aria-label="Historia anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-dots" id="carousel-dots">
+            <span class="dot active" onclick="setStorySlide(0)"></span>
+            <span class="dot" onclick="setStorySlide(1)"></span>
+          </div>
+          <button class="carousel-arrow next" onclick="moveStorySlide(1)" aria-label="Siguiente historia">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
       </div>
-    </div>
     </div>
   </section>
 
