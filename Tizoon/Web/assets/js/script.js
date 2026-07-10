@@ -413,7 +413,7 @@ function mostrarNotificacionBanner(nombrePlato) {
     banner.innerHTML = `
         <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 500; text-align: left; line-height: 1.4;">
             <span style="font-size: 16px; flex-shrink: 0;">🛒</span>
-            <span><strong>${nombrePlato}</strong> fue agregado al carrito de compras. <a href="javascript:void(0)" onclick="abrirCarritoDesdeBanner()">(ver)</a></span>
+            <span><strong>${nombrePlato}</strong> fue agregado al carrito de compras. <a href="javascript:void(0)" onclick="abrirCarritoDesdeBanner(event)">(ver)</a></span>
         </div>
         <button onclick="cerrarBannerNotificacion()" style="background: none; border: none; color: #888; font-size: 20px; cursor: pointer; padding: 0 4px; line-height: 1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: color 0.2s;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#888'">&times;</button>
     `;
@@ -432,7 +432,8 @@ function cerrarBannerNotificacion() {
     }
 }
 
-function abrirCarritoDesdeBanner() {
+function abrirCarritoDesdeBanner(event) {
+    if (event) event.stopPropagation();
     cerrarBannerNotificacion();
     const panel = document.getElementById('cartPanel');
     if (panel && !panel.classList.contains('open')) {
