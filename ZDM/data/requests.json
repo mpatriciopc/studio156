@@ -1,7 +1,7 @@
 [
     {
         "id": "req_87e844a727fe685c",
-        "status": "approved",
+        "status": "reverted",
         "timestamp": "2026-07-16T20:24:52.080032",
         "type": "price",
         "scope": "catalog",
