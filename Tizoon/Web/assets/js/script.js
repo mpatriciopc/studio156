@@ -1,84 +1,20 @@
 const GOOGLE_SHEETS_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUOMeSYCWJOMiJ0vayMxxYTf2sflOyZs4y7pxEwNBVIxUhUGHS-m73C4iC90pnTTnNYg/exec";
 const AIRTABLE_CARTA_API_URL = "https://script.google.com/macros/s/AKfycbybUGkF12LJ9rUi6mw77LoKxmmeuJhPOfAdqNDWo9BEhN9_TTK-nOyPlHPD2EScCI-r/exec";
 
-// Catálogo de respaldo para ejecución local directa (file://) sin servidor local (evita bloqueos de CORS)
-const fallbackPlatos = [
-    {
-        "id": 1,
-        "nombre": "Piqueo mi Perú",
-        "precio": 29990,
-        "categoria": "calientes",
-        "reseña": "Mariscos seleccionados marinados al carbón con la fuerza y aroma del fuego directo.",
-        "img": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=600",
-        "subcategoria": "piqueos_calientes"
-    },
-    {
-        "id": 2,
-        "nombre": "Trio marino",
-        "precio": 19900,
-        "categoria": "calientes",
-        "reseña": "Una imperdible trilogía de frescura marina: ceviche clásico, chicharrón de pescado y causa.",
-        "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600",
-        "subcategoria": "piqueos_calientes"
-    },
-    {
-        "id": 75,
-        "nombre": "Causa Fusión",
-        "precio": 14900,
-        "categoria": "frios",
-        "reseña": "Masa de papa amarilla aliñada con ají amarillo y limón, rellena de mariscos acevichados.",
-        "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600",
-        "subcategoria": "causas"
-    },
-    {
-        "id": 95,
-        "nombre": "Ceviche Mixto",
-        "precio": 15900,
-        "categoria": "frios",
-        "reseña": "Pescado fresco, calamar, camarón y pulpo marinados en limón sutil con ají limo.",
-        "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600",
-        "subcategoria": "ceviches"
-    },
-    {
-        "id": 159,
-        "nombre": "Lomo Saltado",
-        "precio": 15900,
-        "categoria": "calientes",
-        "reseña": "Dados de lomo liso flameados al wok con cebolla morada, tomate, papas fritas y arroz.",
-        "img": "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600",
-        "subcategoria": "carnes"
-    },
-    {
-        "id": 350,
-        "nombre": "Suspiro Limeño",
-        "precio": 4900,
-        "categoria": "postres",
-        "reseña": "Clásico manjar blanco peruano coronado con merengue al oporto y canela.",
-        "img": "https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=600",
-        "subcategoria": "postres"
-    },
-    {
-        "id": 400,
-        "nombre": "Pisco Sour Peruano",
-        "precio": 5900,
-        "categoria": "bar",
-        "reseña": "El trago bandera del Perú: pisco quebranta, limón sutil, jarabe de goma y clara de huevo.",
-        "img": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600",
-        "subcategoria": "pisco_sour"
-    }
-];
+// Números de contacto de WhatsApp para diferentes servicios
+const WHATSAPP_PHONE_GRUPOS = '56940127085';   // Reservas de más de 10 personas (+56 940127085)
+const WHATSAPP_PHONE_PEDIDOS = '56940127085';  // Pedidos para llevar (+56 940127085)
+const WHATSAPP_PHONE_RESERVAS = '56990877291'; // Reservas estándar de 1 a 10 personas (+56 9 9087 7291)
 
-let platosCarta = [];
+// Cargar platos usando la base de datos estática como base inicial
+let platosCarta = typeof cartaData !== 'undefined' ? cartaData : [];
 
-async function cargarCartaLocal() {
+// Intentar cargar la carta desde el almacenamiento local
+if (localStorage.getItem('tizoon_carta_cache')) {
     try {
-        const response = await fetch('carta.json');
-        if (!response.ok) throw new Error('Error al cargar la carta');
-        platosCarta = await response.json();
-        console.log(`Cargados ${platosCarta.length} platos desde carta.json`);
-    } catch (error) {
-        console.warn("Fallo al obtener carta.json (CORS/File Protocol). Cargando carta de respaldo desde memoria...", error);
-        platosCarta = fallbackPlatos;
+        platosCarta = JSON.parse(localStorage.getItem('tizoon_carta_cache'));
+    } catch (e) {
+        console.error("Error al cargar la carta desde localStorage:", e);
     }
 }
 
@@ -413,7 +349,7 @@ function mostrarNotificacionBanner(nombrePlato) {
     banner.innerHTML = `
         <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 500; text-align: left; line-height: 1.4;">
             <span style="font-size: 16px; flex-shrink: 0;">🛒</span>
-            <span><strong>${nombrePlato}</strong> fue agregado al carrito de compras. <a href="javascript:void(0)" onclick="abrirCarritoDesdeBanner(event)">(ver)</a></span>
+            <span><strong>${nombrePlato}</strong> fue agregado al carrito de compras. <a href="javascript:void(0)" onclick="abrirCarritoDesdeBanner()">(ver)</a></span>
         </div>
         <button onclick="cerrarBannerNotificacion()" style="background: none; border: none; color: #888; font-size: 20px; cursor: pointer; padding: 0 4px; line-height: 1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: color 0.2s;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#888'">&times;</button>
     `;
@@ -432,8 +368,7 @@ function cerrarBannerNotificacion() {
     }
 }
 
-function abrirCarritoDesdeBanner(event) {
-    if (event) event.stopPropagation();
+function abrirCarritoDesdeBanner() {
     cerrarBannerNotificacion();
     const panel = document.getElementById('cartPanel');
     if (panel && !panel.classList.contains('open')) {
@@ -513,7 +448,7 @@ function addToCart(id) {
 function cambiarCantidadCarrito(id, delta) {
     const item = carrito.find(item => String(item.id) === String(id));
     if (!item) return;
-    
+
     item.qty += delta;
     if (item.qty <= 0) {
         eliminarDelCarrito(id);
@@ -797,7 +732,7 @@ function abrirWhatsAppGrupo(e) {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 Hola El Tizzón, me gustaría coordinar los detalles para nuestra visita. ¡Muchas gracias!`;
 
-    const urlWa = `https://wa.me/56967459137?text=${encodeURIComponent(mensaje)}`;
+    const urlWa = `https://wa.me/${WHATSAPP_PHONE_GRUPOS}?text=${encodeURIComponent(mensaje)}`;
     window.open(urlWa, '_blank');
 }
 
@@ -1193,7 +1128,7 @@ function procesarReserva(e) {
         if (cleanPhone.length === 9 && cleanPhone.startsWith('9')) {
             cleanPhone = '56' + cleanPhone;
         }
-        const targetPhone = cleanPhone ? cleanPhone : '56967459137';
+        const targetPhone = WHATSAPP_PHONE_RESERVAS; // Reservas estándar
 
         const mensaje = `*Confirmación de Reserva - El Tizzón*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1405,7 +1340,7 @@ ${instrucciones ? `📝 *Notas:* ${instrucciones}` : ''}
         if (cleanPhone.length === 9 && cleanPhone.startsWith('9')) {
             cleanPhone = '56' + cleanPhone;
         }
-        const targetPhone = cleanPhone ? cleanPhone : '56967459137'; // fallback al restaurante si falla
+        const targetPhone = WHATSAPP_PHONE_PEDIDOS; // Pedidos para llevar
         const urlWa = `https://wa.me/${targetPhone}?text=${encodeURIComponent(mensaje)}`;
 
         // Resetear estado del carrito local
@@ -1546,7 +1481,7 @@ function descargarVoucherPedido() {
     if (pedido.instrucciones) {
         calcY += 36; // fila de notas
     }
-    
+
     const detailH = (calcY - 8) - (circleY + 95);
     const notaCocinaH = 50; // margen para 3 lineas de texto envuelto
     const cardH = (circleY + 95) + detailH + 20 + notaCocinaH + 15;
@@ -1803,7 +1738,7 @@ function descargarVoucherPedidoOnly() {
     if (pedido.instrucciones) {
         calcY += 36; // fila de notas
     }
-    
+
     const detailH = (calcY - 8) - (circleY + 95);
     const notaCocinaH = 50; // margen para 3 lineas de texto envuelto
     const cardH = (circleY + 95) + detailH + 20 + notaCocinaH + 15;
@@ -2019,8 +1954,8 @@ function compartirWhatsAppVoucher() {
     if (cleanPhone.length === 9 && cleanPhone.startsWith('9')) {
         cleanPhone = '56' + cleanPhone;
     }
-    const targetPhone = cleanPhone ? cleanPhone : '56967459137';
-    
+    const targetPhone = WHATSAPP_PHONE_PEDIDOS; // Pedidos para llevar
+
     // Crear el mensaje de WhatsApp estructurado
     let waItems = (pedido.carritoItems || []).map(item => `• *${item.qty}x* ${item.nombre} ($${(item.precio * item.qty).toLocaleString('es-CL')})`).join('\n');
     let mensaje = `*Detalle de tu Comanda - El Tizzón*
@@ -2036,7 +1971,7 @@ ${pedido.instrucciones ? `📝 *Notas:* ${pedido.instrucciones}` : ''}
 ¡Hola! Aquí tienes el resumen y voucher de tu comanda en El Tizzón.`;
 
     const urlWa = `https://wa.me/${targetPhone}?text=${encodeURIComponent(mensaje)}`;
-    
+
     alert("¡Voucher copiado al portapapeles! Ahora se abrirá WhatsApp. Pega la imagen (Ctrl+V / Mantener presionado y Pegar) en el chat para enviarla.");
     window.open(urlWa, '_blank');
 }
@@ -2057,17 +1992,17 @@ function generarYCopiarVoucherSilencioso(pedido) {
     const items = pedido.carritoItems || [];
 
     // Calcular la posición final del detalle
-    let calcY = circleY + 95; 
-    calcY += 25; 
-    calcY += rows.length * 36; 
-    calcY += 20; 
-    calcY += items.length * 24; 
-    calcY += 16; 
-    calcY += 36; 
+    let calcY = circleY + 95;
+    calcY += 25;
+    calcY += rows.length * 36;
+    calcY += 20;
+    calcY += items.length * 24;
+    calcY += 16;
+    calcY += 36;
     if (pedido.instrucciones) {
-        calcY += 36; 
+        calcY += 36;
     }
-    
+
     const detailH = (calcY - 8) - (circleY + 95);
     const notaCocinaH = 50;
     const cardH = (circleY + 95) + detailH + 20 + notaCocinaH + 15;
@@ -2426,7 +2361,7 @@ function compartirWhatsAppReserva() {
     if (cleanPhone.length === 9 && cleanPhone.startsWith('9')) {
         cleanPhone = '56' + cleanPhone;
     }
-    const targetPhone = cleanPhone ? cleanPhone : '56967459137';
+    const targetPhone = WHATSAPP_PHONE_RESERVAS; // Reservas estándar
 
     const mensaje = `*Confirmación de Reserva - El Tizzón*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -2644,10 +2579,10 @@ function inicializarScrollHorizontal(elementId) {
         const rect = slider.getBoundingClientRect();
         const mouseX = e.clientX;
         const viewportWidth = window.innerWidth;
-        
+
         // Zona de activación: 180px para una transición de realce más suave y gradual
         const edgeZone = 180;
-        
+
         // Calcular distancias a los bordes izquierdo/derecho del viewport y del propio contenedor
         const distToLeftViewport = mouseX;
         const distToRightViewport = viewportWidth - mouseX;
@@ -2736,7 +2671,7 @@ function actualizarHorariosSegunFecha() {
 
     // Poblar las opciones en intervalos de 15 minutos
     horaInput.innerHTML = "";
-    
+
     const startMins = parseTimeToMinutes(rango.start);
     const endMins = parseTimeToMinutes(rango.end);
 
@@ -2770,10 +2705,32 @@ function validarYFijarHoraInput() {
     // No-op. El select restringe las entradas a horas válidas automáticamente.
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+function cargarCartaAirtable() {
+    if (!AIRTABLE_CARTA_API_URL) return;
+
+    fetch(AIRTABLE_CARTA_API_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data) && data.length > 0) {
+                platosCarta = data;
+                localStorage.setItem('tizoon_carta_cache', JSON.stringify(data));
+                console.log(`Successfully fetched and cached ${data.length} dishes from Airtable.`);
+
+                // Si el usuario ya seleccionó una categoría, volvemos a renderizar con la nueva data
+                if (categoriaActual && categoriaActual !== 'todos') {
+                    renderCarta(categoriaActual, subcategoriaActual);
+                }
+            }
+        })
+        .catch(error => {
+            console.error("Error al cargar la carta desde Airtable:", error);
+        });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
     renderCarta(null);
     cargarReservasPlanilla();
-    await cargarCartaLocal();
+    cargarCartaAirtable();
     setModoEntrega('takeaway');
     inicializarScrollHorizontal('subcategoriesContainer');
     inicializarScrollHorizontal('categoriesContainer');
@@ -2803,8 +2760,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         const navCartBtn = document.querySelector('.navbar-cart-btn');
         if (!panel || !panel.classList.contains('open')) return;
 
-        // Evitar cerrar si se hace clic en botones de agregar plato o controles de cantidad del carrito
-        if (e.target.closest('.btn-add') || e.target.closest('.cart-qty-btn') || e.target.closest('.cart-delete-btn')) return;
+        // Evitar cerrar si se hace clic en botones de agregar plato, controles del carrito o el banner de notificación
+        if (e.target.closest('.btn-add') || e.target.closest('.cart-qty-btn') || e.target.closest('.cart-delete-btn') || e.target.closest('#cartNotificationBanner')) return;
 
         // Si el elemento fue removido del DOM durante la actualización del carrito (ej. botones + / - o eliminar), evitar cerrar
         if (!document.documentElement.contains(e.target)) return;
@@ -2820,7 +2777,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (location.protocol === 'http:' && !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
         location.replace('https://' + location.hostname + location.pathname + location.search + location.hash);
     }
-    
+
     verificarConsentimientoCookies();
 });
 
@@ -2867,7 +2824,7 @@ function lockFocus(modalId) {
         modal.removeEventListener('keydown', activeFocusTrap);
     }
 
-    activeFocusTrap = function(e) {
+    activeFocusTrap = function (e) {
         if (e.key !== 'Tab') return;
 
         if (e.shiftKey) { // Shift + Tab
@@ -2947,7 +2904,7 @@ function abrirConfiguracionCookies() {
                 const marketingCheck = document.getElementById('cookie_marketing');
                 if (statsCheck) statsCheck.checked = !!prefs.estadisticas;
                 if (marketingCheck) marketingCheck.checked = !!prefs.marketing;
-            } catch (e) {}
+            } catch (e) { }
         }
         configModal.style.display = 'flex';
         setTimeout(() => configModal.classList.add('visible'), 50);
@@ -3048,18 +3005,18 @@ function procesarFormularioARCO(event) {
 
     // Generar mensaje formal para WhatsApp del administrador
     const waMsg = `*SOLICITUD DERECHOS ARCO+P - EL TIZZÓN*\n\n` +
-                  `*Cliente:* ${nombre}\n` +
-                  `*Teléfono:* ${telefono}\n` +
-                  `*Derecho ejercido:* ${derecho}\n` +
-                  `*Detalle:* ${descripcion}\n\n` +
-                  `Solicito procesar este requerimiento de forma gratuita de acuerdo con la Ley N° 19.628 de protección de datos personales.`;
+        `*Cliente:* ${nombre}\n` +
+        `*Teléfono:* ${telefono}\n` +
+        `*Derecho ejercido:* ${derecho}\n` +
+        `*Detalle:* ${descripcion}\n\n` +
+        `Solicito procesar este requerimiento de forma gratuita de acuerdo con la Ley N° 19.628 de protección de datos personales.`;
 
-    const waUrl = `https://wa.me/56967459137?text=${encodeURIComponent(waMsg)}`;
-    
+    const waUrl = `https://wa.me/${WHATSAPP_PHONE_RESERVAS}?text=${encodeURIComponent(waMsg)}`;
+
     alert("Tu solicitud de derechos ARCO+P ha sido generada con éxito. Te redirigiremos a nuestro canal de WhatsApp para que envíes el requerimiento formal de inmediato.");
-    
+
     cerrarModalPrivacidad();
-    
+
     window.open(waUrl, '_blank');
     document.getElementById('arcoForm')?.reset();
 }
