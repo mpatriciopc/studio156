@@ -1,0 +1,56 @@
+:root {
+  /* Identidad Visual Orgánica & Agrícola - Academia Huertera */
+  --color-brand-primary: #1e3f20;         /* Verde bosque/huerto profundo */
+  --color-brand-primary-hover: #142c16;   /* Verde humus muy oscuro */
+  --color-brand-light: #e3ebd9;           /* Verde hoja suave */
+  --color-brand-accent: #c46424;          /* Terracota / arcilla fértil */
+  --color-brand-accent-hover: #9c4b16;    /* Terracota quemado */
+  --color-brand-accent-light: #f7e8db;    /* Tono tierra claro */
+
+  /* Tonos Café y Tierra Orgánicos */
+  --color-earth-dark: #2c221e;            /* Tierra fértil profunda */
+  --color-earth-medium: #4a3b32;          /* Madera/corteza noble */
+  --color-earth-light: #8c7365;           /* Café sustrato suave */
+  --color-bg-warm-sand: #f8f6f0;         /* Arena/pergamino orgánico */
+
+  /* Fondos y Superficies */
+  --color-bg-app: #f4f5f0;                /* Fondo orgánico fresco */
+  --color-bg-card: #ffffff;               /* Tarjetas limpias con borde artesanal */
+  --color-bg-surface-elevated: #ffffff;
+  --color-bg-player: #111710;             /* Reproductor modo noche huerto */
+  --color-sidebar-bg: #142013;            /* Sidebar verde follaje oscuro */
+  --color-sidebar-hover: #223320;         /* Hover verde musgo */
+  --color-sidebar-border: #293d27;
+
+  /* Textos y Tipografía */
+  --color-text-main: #1c241b;             /* Texto carbón vegetal */
+  --color-text-muted: #5a6659;            /* Verde secado / tono tierra */
+  --color-text-inverse: #ffffff;          /* Texto sobre fondos oscuros */
+  --color-text-inverse-muted: #b0c2ae;
+
+  /* Estados */
+  --color-success: #2b7a37;
+  --color-success-bg: #e2f2e4;
+  --color-warning: #d97706;
+  --color-warning-bg: #fef3c7;
+  --color-border: #dbe3d8;
+  --color-border-hover: #b8c7b4;
+
+  /* Sombras y Elevación Cálida */
+  --shadow-sm: 0 2px 4px rgba(44, 34, 30, 0.04);
+  --shadow-md: 0 6px 18px rgba(30, 63, 32, 0.08), 0 2px 6px rgba(44, 34, 30, 0.04);
+  --shadow-lg: 0 16px 36px -8px rgba(30, 63, 32, 0.18), 0 6px 12px rgba(44, 34, 30, 0.08);
+
+  /* Medidas y Radios */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --sidebar-width: 340px;
+  --header-height: 72px;
+
+  /* Tipografía */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-serif: Georgia, "Times New Roman", serif;
+}

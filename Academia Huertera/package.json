@@ -1,0 +1,23 @@
+{
+  "name": "academia-huertera-lms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "audit": "node scripts/auto-audit.js",
+    "guardrails": "node scripts/guardrails-css.js",
+    "test": "node src/testing/api.test.js"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.48.1",
+    "lucide-react": "^0.475.0",
+    "mercadopago": "^2.3.0",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

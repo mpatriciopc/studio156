@@ -1,0 +1,126 @@
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  overflow-y: auto;
+  color: var(--color-text-inverse);
+  flex-shrink: 0;
+}
+
+.header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.courseBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-brand-accent);
+  background: rgba(217, 119, 36, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.courseTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-inverse);
+  margin-top: 0.25rem;
+}
+
+.moduleList {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.moduleItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.moduleHeader {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-inverse-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lessonList {
+  display: flex;
+  flex-direction: column;
+}
+
+.lessonLink {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--color-text-inverse-muted);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.lessonLink:hover {
+  background-color: var(--color-sidebar-hover);
+  color: var(--color-text-inverse);
+}
+
+.activeLesson {
+  background-color: var(--color-sidebar-hover);
+  color: var(--color-text-inverse);
+  font-weight: 600;
+  border-left-color: var(--color-brand-accent);
+}
+
+.checkIcon {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid #4a5c48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.completedCheck {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+}
+
+.lessonTitleText {
+  line-height: 1.35;
+}
+
+.lessonDuration {
+  font-size: 0.75rem;
+  color: #72856f;
+  margin-top: 0.2rem;
+}

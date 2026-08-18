@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-app);
+}
+
+.bodyLayout {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .bodyLayout {
+    flex-direction: column;
+  }
+}

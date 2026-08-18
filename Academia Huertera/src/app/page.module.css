@@ -1,0 +1,301 @@
+.hero {
+  position: relative;
+  padding: 6.5rem 0 5.5rem;
+  background: linear-gradient(135deg, rgba(20, 32, 19, 0.88) 0%, rgba(44, 34, 30, 0.85) 100%), url('/images/hero_garden.png');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  border-bottom: 4px solid var(--color-brand-accent);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(227, 235, 217, 0.2);
+  backdrop-filter: blur(8px);
+  color: #e5f5df;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.heroTitle {
+  font-family: var(--font-family-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: #d1dfcf;
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+  max-width: 620px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.heroCard {
+  background: linear-gradient(180deg, #1b291a 0%, #2c221e 100%);
+  color: #fff;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(196, 100, 36, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCardBadge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--color-brand-accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardTitle {
+  font-family: var(--font-family-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cardPrice {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-brand-accent);
+  margin-bottom: 0.25rem;
+}
+
+.cardPriceSub {
+  font-size: 0.88rem;
+  color: var(--color-text-inverse-muted);
+  margin-bottom: 1.75rem;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: #d3ded1;
+  margin-bottom: 2rem;
+}
+
+.featuresList li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.featuresList li::before {
+  content: '🌱';
+  font-size: 0.9rem;
+}
+
+.section {
+  padding: 6rem 0;
+  background-color: var(--color-bg-app);
+}
+
+.sectionDark {
+  background: linear-gradient(180deg, #142013 0%, #201a17 100%);
+  color: #fff;
+}
+
+.sectionTitleGroup {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4rem;
+}
+
+.sectionTag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-brand-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.sectionTitle {
+  font-family: var(--font-family-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  color: var(--color-text-main);
+}
+
+.modulesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.moduleCard {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-brand-primary);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.25 ease, box-shadow 0.25s ease;
+}
+
+.moduleCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-left-color: var(--color-brand-accent);
+}
+
+.moduleHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.moduleNumber {
+  width: 42px;
+  height: 42px;
+  background-color: var(--color-brand-light);
+  color: var(--color-brand-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.moduleTitle {
+  font-family: var(--font-family-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.moduleDesc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.chapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-top: 1px dashed var(--color-border);
+  padding-top: 1.25rem;
+}
+
+.chapterItem {
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chapterTime {
+  font-size: 0.78rem;
+  color: var(--color-earth-light);
+  background-color: var(--color-bg-app);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.instructorCard {
+  background: linear-gradient(135deg, #1c271b 0%, #2e241f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.instructorAvatarImg {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 4px solid var(--color-brand-accent);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.instructorName {
+  font-family: var(--font-family-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.instructorRole {
+  font-size: 1rem;
+  color: var(--color-brand-accent);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.instructorBio {
+  font-size: 1rem;
+  color: #d1dfcf;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.footer {
+  background-color: var(--color-earth-dark);
+  color: var(--color-text-inverse-muted);
+  padding: 3.5rem 0;
+  border-top: 2px solid var(--color-earth-medium);
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+  .modulesGrid {
+    grid-template-columns: 1fr;
+  }
+  .instructorCard {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .instructorAvatarImg {
+    margin: 0 auto;
+  }
+}

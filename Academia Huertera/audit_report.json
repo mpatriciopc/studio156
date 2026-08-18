@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-08-14T16:01:19.636Z",
+  "status": "PASSED",
+  "totalChecks": 16,
+  "passedChecks": 16,
+  "failedChecks": 0,
+  "checks": [
+    {
+      "name": "Existencia de src/app/page.jsx",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/app/(platform)/curso/dashboard/page.jsx",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/app/(platform)/curso/leccion/[slug]/page.jsx",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/lib/courseData.js",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/styles/variables.css",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/styles/reset.css",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de src/styles/globals.css",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de supabase/schema.sql",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Existencia de middleware.js",
+      "category": "Estructura",
+      "passed": true,
+      "detail": "Archivo verificado correctamente"
+    },
+    {
+      "name": "Integridad del Plan de 16 Capítulos",
+      "category": "Contenidos",
+      "passed": true,
+      "detail": "Los 16 capítulos están correctamente definidos"
+    },
+    {
+      "name": "Integridad de Módulos (4 Módulos)",
+      "category": "Contenidos",
+      "passed": true,
+      "detail": "4 módulos lógicos verificados"
+    },
+    {
+      "name": "Seguridad RLS en Perfiles",
+      "category": "Seguridad SQL",
+      "passed": true,
+      "detail": "RLS activado en tabla profiles"
+    },
+    {
+      "name": "Seguridad RLS en Matrículas",
+      "category": "Seguridad SQL",
+      "passed": true,
+      "detail": "RLS activado en tabla enrollments"
+    },
+    {
+      "name": "Seguridad RLS en Progreso de Lecciones",
+      "category": "Seguridad SQL",
+      "passed": true,
+      "detail": "RLS activado en tabla lesson_progress"
+    },
+    {
+      "name": "Variables de Color Verde Huerto",
+      "category": "Diseño CSS",
+      "passed": true,
+      "detail": "Color primario #2d5a27 configurado"
+    },
+    {
+      "name": "Variables de Color Terracota Cosecha",
+      "category": "Diseño CSS",
+      "passed": true,
+      "detail": "Color acento #d97724 configurado"
+    }
+  ]
+}
