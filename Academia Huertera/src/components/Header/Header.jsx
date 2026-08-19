@@ -16,7 +16,7 @@ export default function Header({ user = null, isPlatform = false }) {
           {!isPlatform ? (
             <>
               <Link href="#temario" className={styles.navLink}>Temario (16 Capítulos)</Link>
-              <Link href="#instructor" className={styles.navLink}>Javier Soler</Link>
+              <Link href="#instructor" className={styles.navLink}>El Instructor</Link>
               <Link href="#precios" className={styles.navLink}>Inscripción</Link>
               <Link href="/login" className="btn-secondary">Iniciar Sesión</Link>
               <Link href="/register" className="btn-primary">Inscribirse Ahora</Link>

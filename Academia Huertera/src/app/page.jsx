@@ -41,7 +41,7 @@ export default function LandingPage() {
                 🌱 Curso Especializado • Javier Soler
               </div>
               <h1 className={styles.heroTitle}>
-                Aprende a construir un <span style={{ color: 'var(--color-brand-primary)' }}>Huerto Comercial Rentable</span> en 1.000 m²
+                Aprende a construir un <span style={{ color: 'var(--color-brand-accent)' }}>Huerto Comercial Rentable</span> en 1.000 m²
               </h1>
               <p className={styles.heroSubtitle}>
                 Domina la planificación productiva, la estructura de costos hortícolas y las estrategias de comercialización directa para crear una empresa agrícola sustentable y altamente lucrativa.
