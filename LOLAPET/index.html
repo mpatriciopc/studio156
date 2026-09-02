@@ -35,15 +35,17 @@
 
     /* Hero Section */
     .hero-banner { 
-      background: linear-gradient(135deg, #0e7490 0%, #155e75 100%), url('src/styles/hero-pattern.png');
-      background-blend-mode: overlay;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(14, 116, 144, 0.85) 100%), url('src/styles/hero-pattern.png');
+      background-blend-mode: multiply;
       background-size: cover;
+      background-position: center;
       color: #ffffff; 
-      padding: 4rem 1rem; 
+      padding: 4.5rem 1rem; 
       text-align: center; 
       border-radius: 0 0 32px 32px; 
       margin-bottom: 2.5rem; 
       position: relative;
+      box-shadow: inset 0 -10px 20px rgba(0,0,0,0.15);
     }
     .hero-badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(6px); padding: 6px 16px; border-radius: 99px; font-size: 0.8125rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
     .hero-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.75rem; line-height: 1.2; }
