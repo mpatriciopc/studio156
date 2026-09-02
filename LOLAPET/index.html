@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lola Pet - Tu mascota feliz, tu tranquilidad en casa 🐾</title>
+  <link rel="stylesheet" href="src/styles/index.css" />
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Script de cliente estático para vista rápida demo -->
+  <script type="text/babel">
+    const mockProducts = [
+      {
+        id: "rec01",
+        name: "Alimento Super Premium Perro Adulto",
+        brand: "NutriPet",
+        species: "dog",
+        category: "Alimentos",
+        variants: [
+          { sku: "NP-DOG-3K", format: "3 Kg", price: 14990, salePrice: 12990, imageUrl: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600" },
+          { sku: "NP-DOG-15K", format: "15 Kg", price: 48990, imageUrl: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600" }
+        ]
+      },
+      {
+        id: "rec02",
+        name: "Snack Dental Stick Masticables Perro",
+        brand: "DentalCare",
+        species: "dog",
+        category: "Snacks",
+        variants: [
+          { sku: "DC-DOG-7P", format: "Pack 7 Unidades", price: 4990, imageUrl: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=600" }
+        ]
+      },
+      {
+        id: "rec03",
+        name: "Antiparasitario Interno y Externo Bravecto",
+        brand: "Bravecto",
+        species: "dog",
+        category: "Farmacia/Higiene",
+        variants: [
+          { sku: "BRV-DOG-1020", format: "Perro 10-20 Kg", price: 32990, imageUrl: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600" }
+        ]
+      },
+      {
+        id: "rec04",
+        name: "Alimento Felino Salmón & Salmón Salvaje",
+        brand: "CatGourmet",
+        species: "cat",
+        category: "Alimentos",
+        variants: [
+          { sku: "CG-CAT-15K", format: "1.5 Kg", price: 11990, imageUrl: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600" },
+          { sku: "CG-CAT-7K", format: "7.5 Kg", price: 36990, imageUrl: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600" }
+        ]
+      },
+      {
+        id: "rec05",
+        name: "Arena Sanitaria Aglomerante Lavanda",
+        brand: "PurrClean",
+        species: "cat",
+        category: "Farmacia/Higiene",
+        variants: [
+          { sku: "PC-ARENA-4KG", format: "Bolsa 4 Kg", price: 6490, imageUrl: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600" }
+        ]
+      }
+    ];
+
+    function App() {
+      const [species, setSpecies] = React.useState("all");
+      const [category, setCategory] = React.useState("all");
+      const [cart, setCart] = React.useState([]);
+      const [isCartOpen, setIsCartOpen] = React.useState(false);
+
+      const addToCart = (product, variant) => {
+        setCart((prev) => {
+          const idx = prev.findIndex(item => item.variant.sku === variant.sku);
+          if (idx > -1) {
+            const next = [...prev];
+            next[idx].qty += 1;
+            return next;
+          }
+          return [...prev, { product, variant, qty: 1 }];
+        });
+        setIsCartOpen(true);
+      };
+
+      const filteredProducts = mockProducts.filter(p => {
+        if (species !== "all" && p.species !== species) return false;
+        if (category !== "all" && p.category !== category) return false;
+        return true;
+      });
+
+      const totalCart = cart.reduce((sum, item) => sum + (item.variant.salePrice || item.variant.price) * item.qty, 0);
+
+      return (
+        <div>
+          {/* Navbar Header */}
+          <header className="navbar-lola">
+            <div className="navbar-lola-container">
+              <a href="#" className="navbar-brand-lola">
+                🐾 <span>LOLA PET</span>
+              </a>
+
+              <div className="species-toggle">
+                <button
+                  className={`species-btn ${species === "dog" ? "active-dog" : ""}`}
+                  onClick={() => setSpecies(species === "dog" ? "all" : "dog")}
+                >
+                  🐶 Perros
+                </button>
+                <button
+                  className={`species-btn ${species === "cat" ? "active-cat" : ""}`}
+                  onClick={() => setSpecies(species === "cat" ? "all" : "cat")}
+                >
+                  🐱 Gatos
+                </button>
+              </div>
+
+              <button className="cart-btn-trigger" onClick={() => setIsCartOpen(true)}>
+                🛒 <span className="cart-badge">{cart.reduce((c, i) => c + i.qty, 0)}</span>
+              </button>
+            </div>
+          </header>
+
+          {/* Hero Section con Ilustración de Fondo */}
+          <section className="hero-banner-lola">
+            <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+              <span style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", padding: "4px 14px", borderRadius: "99px", fontSize: "0.75rem", fontWeight: 700 }}>
+                ⚡ Despacho en 24h a 48h en Santiago y Regiones
+              </span>
+              <h1 style={{ fontSize: "2.35rem", fontWeight: 800, marginTop: "0.85rem", lineHeight: 1.2 }}>Tu mascota feliz, tu tranquilidad en casa</h1>
+              <p style={{ opacity: 0.95, marginTop: "0.5rem", fontSize: "1rem" }}>Alimentos seleccionados, antiparasitarios y accesorios de alta calidad para perros y gatos.</p>
+            </div>
+          </section>
+
+          {/* Catalog Grid */}
+          <main style={{ maxWidth: "1200px", margin: "2.5rem auto", padding: "0 1rem" }}>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+              {["all", "Alimentos", "Snacks", "Farmacia/Higiene"].map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  style={{
+                    padding: "0.45rem 1rem",
+                    borderRadius: "99px",
+                    border: "1px solid #e4e4e7",
+                    background: category === cat ? "#0e7490" : "#fff",
+                    color: category === cat ? "#fff" : "#18181b",
+                    fontWeight: 700,
+                    fontSize: "0.8125rem",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease"
+                  }}
+                >
+                  {cat === "all" ? "Todos los productos" : cat}
+                </button>
+              ))}
+            </div>
+
+            <div className="product-grid">
+              {filteredProducts.map(p => (
+                <ProductCardDemo key={p.id} product={p} onAdd={addToCart} onViewDetails={(prod) => setSelectedProductDetails(prod)} />
+              ))}
+            </div>
+          </main>
+
+          {/* Modal / Página Detallada de Producto */}
+          {selectedProductDetails && (
+            <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }} onClick={() => setSelectedProductDetails(null)}>
+              <div style={{ background: "#fff", borderRadius: "16px", maxWidth: "700px", width: "100%", maxHeight: "90vh", overflowY: "auto", padding: "1.5rem", position: "relative" }} onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setSelectedProductDetails(null)} style={{ position: "absolute", top: "16px", right: "16px", border: "none", background: "#f4f4f5", borderRadius: "50%", width: "32px", height: "32px", fontSize: "1rem", cursor: "pointer" }}>✕</button>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+                  <div>
+                    <img src={selectedProductDetails.variants[0].imageUrl} style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: "12px" }} />
+                  </div>
+                  <div>
+                    <span style={{ fontSize: "0.75rem", color: "#71717a", fontWeight: 700, textTransform: "uppercase" }}>{selectedProductDetails.brand}</span>
+                    <h2 style={{ fontSize: "1.35rem", fontWeight: 800, marginTop: "2px", marginBottom: "0.5rem" }}>{selectedProductDetails.name}</h2>
+                    <p style={{ fontSize: "0.875rem", color: "#52525b", lineHeight: 1.5, marginBottom: "1rem" }}>{selectedProductDetails.description}</p>
+
+                    <div style={{ background: "#fafafa", padding: "0.85rem", borderRadius: "10px", border: "1px solid #e4e4e7", marginBottom: "1.25rem" }}>
+                      <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#0e7490", marginBottom: "4px" }}>BENEFICIOS DESTACADOS</div>
+                      <ul style={{ fontSize: "0.8125rem", paddingLeft: "1.25rem", color: "#3f3f46" }}>
+                        <li>Fórmula 100% nutricional libre de colorantes artificiales.</li>
+                        <li>Ingredientes seleccionados con alta digestibilidad.</li>
+                        <li>Garantía de frescura y empaque sellado al vacío.</li>
+                      </ul>
+                    </div>
+
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "1.25rem" }}>
+                      <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#18181b" }}>${(selectedProductDetails.variants[0].salePrice || selectedProductDetails.variants[0].price).toLocaleString("es-CL")}</span>
+                      <span style={{ fontSize: "0.8125rem", color: "#16a34a", fontWeight: 700 }}>✓ Stock disponible en bodega</span>
+                    </div>
+
+                    <button
+                      className="btn-add-cart"
+                      style={{ padding: "0.75rem" }}
+                      onClick={() => {
+                        addToCart(selectedProductDetails, selectedProductDetails.variants[0]);
+                        setSelectedProductDetails(null);
+                      }}
+                    >
+                      Añadir al Carrito 🛒
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Cart Drawer */}
+          {isCartOpen && (
+            <>
+              <div className="cart-drawer-overlay active" onClick={() => setIsCartOpen(false)} />
+              <aside className="cart-drawer active">
+                <div className="cart-drawer-header">
+                  <h2 style={{ fontSize: "1.125rem", fontWeight: 800 }}>Tu Carrito Peludo 🐾</h2>
+                  <button onClick={() => setIsCartOpen(false)} style={{ border: "none", background: "none", fontSize: "1.25rem", cursor: "pointer" }}>✕</button>
+                </div>
+                <div className="cart-drawer-body">
+                  {cart.length === 0 ? (
+                    <p style={{ textAlign: "center", padding: "2rem 0", color: "#71717a" }}>Tu carrito está vacío 🐶</p>
+                  ) : (
+                    cart.map((item, idx) => (
+                      <div key={idx} style={{ display: "flex", gap: "10px", marginBottom: "12px", paddingBottom: "12px", borderBottom: "1px solid #eee" }}>
+                        <img src={item.variant.imageUrl} style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "8px" }} />
+                        <div>
+                          <div style={{ fontWeight: 700, fontSize: "0.85rem" }}>{item.product.name}</div>
+                          <div style={{ fontSize: "0.75rem", color: "#71717a" }}>{item.variant.format} x {item.qty}</div>
+                          <div style={{ fontWeight: 800, fontSize: "0.85rem", marginTop: "2px" }}>${((item.variant.salePrice || item.variant.price) * item.qty).toLocaleString("es-CL")}</div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+                {cart.length > 0 && (
+                  <div className="cart-drawer-footer">
+                    <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 800, marginBottom: "1rem" }}>
+                      <span>Total:</span>
+                      <span>${totalCart.toLocaleString("es-CL")}</span>
+                    </div>
+                    <button className="btn-add-cart" onClick={() => alert("Iniciando Checkout seguro de Lola Pet...")}>
+                      Ir a Pagar 🛒
+                    </button>
+                  </div>
+                )}
+              </aside>
+            </>
+          )}
+
+          {/* Botón Flotante de WhatsApp */}
+          <a
+            href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta%20sobre%20un%20producto"
+            target="_blank"
+            rel="noreferrer"
+            className="whatsapp-float-btn"
+            title="Hablar con asesoría de Lola Pet en WhatsApp"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+          </a>
+
+          {/* Footer Enriquecido */}
+          <footer style={{ background: "#18181b", color: "#a1a1aa", padding: "3.5rem 1rem 2rem 1rem", marginTop: "4rem", fontSize: "0.875rem" }}>
+            <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2.5rem" }}>
+              <div>
+                <h4 style={{ color: "#ffffff", fontWeight: 800, fontSize: "1.125rem", marginBottom: "0.75rem" }}>🐾 LOLA PET</h4>
+                <p style={{ lineHeight: 1.6, marginBottom: "1rem" }}>Tu mascota feliz, tu tranquilidad en casa. Alimentos seleccionados, antiparasitarios y accesorios en Chile.</p>
+                <div style={{ display: "flex", gap: "0.5rem" }}>
+                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-icon-btn" title="Instagram">📸</a>
+                  <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social-icon-btn" title="Facebook">📘</a>
+                  <a href="https://tiktok.com" target="_blank" rel="noreferrer" className="social-icon-btn" title="TikTok">🎵</a>
+                </div>
+              </div>
+
+              <div>
+                <h5 style={{ color: "#ffffff", fontWeight: 700, marginBottom: "0.875rem", fontSize: "0.9375rem" }}>Mapa del Sitio</h5>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <li><a href="index.html" className="footer-link">Inicio</a></li>
+                  <li><a href="index.html?species=dog" className="footer-link">Catálogo Perros 🐶</a></li>
+                  <li><a href="index.html?species=cat" className="footer-link">Catálogo Gatos 🐱</a></li>
+                  <li><a href="contacto-mayorista.html" className="footer-link">Convenios Mayoristas B2B</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h5 style={{ color: "#ffffff", fontWeight: 700, marginBottom: "0.875rem", fontSize: "0.9375rem" }}>Links de Interés</h5>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <li><a href="#politicas" className="footer-link">Políticas de Envío</a></li>
+                  <li><a href="#terminos" className="footer-link">Términos del Servicio</a></li>
+                  <li><a href="#faq" className="footer-link">Preguntas Frecuentes</a></li>
+                  <li><a href="#asesoria" className="footer-link">Asesoría Veterinaria</a></li>
+                </ul>
+              </div>
+
+              <div>
+                <h5 style={{ color: "#ffffff", fontWeight: 700, marginBottom: "0.875rem", fontSize: "0.9375rem" }}>Despacho & Pago</h5>
+                <p style={{ marginBottom: "0.5rem" }}>⚡ Entregas 24h - 48h hábiles.</p>
+                <p style={{ marginBottom: "0.75rem" }}>📍 Cobertura RM y regiones.</p>
+                <div style={{ fontSize: "1.25rem", display: "flex", gap: "8px" }}>
+                  <span title="Webpay Plus">💳</span>
+                  <span title="Mercado Pago">🛍️</span>
+                  <span title="Transferencia Directa">🏦</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ maxWidth: "1200px", margin: "2.5rem auto 0 auto", paddingTop: "1.5rem", borderTop: "1px solid #27272a", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.75rem" }}>
+              <span>© 2026 Lola Pet SpA. Todos los derechos reservados.</span>
+              <span>Hecho con ❤️ para perros y gatos en Chile</span>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    function ProductCardDemo({ product, onAdd, onViewDetails }) {
+      const [selectedVar, setSelectedVar] = React.useState(product.variants[0]);
+      const [added, setAdded] = React.useState(false);
+
+      const handleAdd = () => {
+        onAdd(product, selectedVar);
+        setAdded(true);
+        setTimeout(() => setAdded(false), 1200);
+      };
+
+      return (
+        <div className="product-card">
+          <div>
+            <div className="product-card-img-wrapper" onClick={() => onViewDetails(product)} style={{ cursor: "pointer" }}>
+              <img src={selectedVar.imageUrl} className="product-card-img" />
+              <span className="badge-tag" style={{ background: "#0e7490" }}>Ver Detalle 👁️</span>
+            </div>
+            <span className="product-brand">{product.brand}</span>
+            <h3 className="product-title" onClick={() => onViewDetails(product)} style={{ cursor: "pointer" }}>{product.name}</h3>
+
+            {product.variants.length > 1 && (
+              <div className="variant-selector-pills">
+                {product.variants.map(v => (
+                  <button
+                    key={v.sku}
+                    className={`variant-pill ${v.sku === selectedVar.sku ? "selected" : ""}`}
+                    onClick={() => setSelectedVar(v)}
+                  >
+                    {v.format}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <div className="price-row">
+              <span className="price-current">${(selectedVar.salePrice || selectedVar.price).toLocaleString("es-CL")}</span>
+            </div>
+            <button className="btn-add-cart" onClick={handleAdd} style={{ backgroundColor: added ? "#16a34a" : undefined }}>
+              {added ? "¡Añadido ✓!" : "Llevar a casa"}
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

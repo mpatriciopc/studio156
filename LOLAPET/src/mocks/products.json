@@ -1,0 +1,124 @@
+[
+  {
+    "id": "rec01",
+    "name": "Alimento Super Premium Perro Adulto",
+    "slug": "super-premium-perro-adulto",
+    "brand": "NutriPet",
+    "species": "dog",
+    "category": "Alimentos",
+    "description": "Fórmula nutricional completa enriquecida con Omega 3 y 6 para pelaje brillante y digestión óptima en perros adultos.",
+    "featured": true,
+    "active": true,
+    "variants": [
+      {
+        "sku": "NP-DOG-3K",
+        "format": "3 Kg",
+        "price": 14990,
+        "salePrice": 12990,
+        "stock": 15,
+        "weightKg": 3.0,
+        "imageUrl": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600&auto=format&fit=crop"
+      },
+      {
+        "sku": "NP-DOG-15K",
+        "format": "15 Kg",
+        "price": 48990,
+        "stock": 8,
+        "weightKg": 15.0,
+        "imageUrl": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "rec02",
+    "name": "Snack Dental Stick Masticables Perro",
+    "slug": "snack-dental-stick-perro",
+    "brand": "DentalCare",
+    "species": "dog",
+    "category": "Snacks",
+    "description": "Barritas dentales masticables que remueven el sarro y mantienen el aliento fresco.",
+    "featured": true,
+    "active": true,
+    "variants": [
+      {
+        "sku": "DC-DOG-7P",
+        "format": "Pack 7 Unidades",
+        "price": 4990,
+        "stock": 25,
+        "weightKg": 0.2,
+        "imageUrl": "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=600&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "rec03",
+    "name": "Antiparasitario Interno y Externo Bravecto",
+    "slug": "bravecto-antiparasitario-perros",
+    "brand": "Bravecto",
+    "species": "dog",
+    "category": "Farmacia/Higiene",
+    "description": "Protección efectiva por 12 semanas contra pulgas y garrapatas en comprimido masticable.",
+    "featured": true,
+    "active": true,
+    "variants": [
+      {
+        "sku": "BRV-DOG-1020",
+        "format": "Perro 10-20 Kg",
+        "price": 32990,
+        "stock": 10,
+        "weightKg": 0.1,
+        "imageUrl": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "rec04",
+    "name": "Alimento Felino Salmón & Salmón Salvaje",
+    "slug": "alimento-felino-salmon-salvaje",
+    "brand": "CatGourmet",
+    "species": "cat",
+    "category": "Alimentos",
+    "description": "Nutrición especializada para gatos castrados con alta proteína de salmón real.",
+    "featured": true,
+    "active": true,
+    "variants": [
+      {
+        "sku": "CG-CAT-15K",
+        "format": "1.5 Kg",
+        "price": 11990,
+        "stock": 18,
+        "weightKg": 1.5,
+        "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&auto=format&fit=crop"
+      },
+      {
+        "sku": "CG-CAT-7K",
+        "format": "7.5 Kg",
+        "price": 36990,
+        "stock": 5,
+        "weightKg": 7.5,
+        "imageUrl": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&auto=format&fit=crop"
+      }
+    ]
+  },
+  {
+    "id": "rec05",
+    "name": "Arena Sanitaria Aglomerante Lavanda",
+    "slug": "arena-sanitaria-aglomerante-gato",
+    "brand": "PurrClean",
+    "species": "cat",
+    "category": "Farmacia/Higiene",
+    "description": "Bentonita 100% natural de rápida aglomeración con control óptimo de olores aroma lavanda.",
+    "featured": true,
+    "active": true,
+    "variants": [
+      {
+        "sku": "PC-ARENA-4KG",
+        "format": "Bolsa 4 Kg",
+        "price": 6490,
+        "stock": 30,
+        "weightKg": 4.0,
+        "imageUrl": "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600&auto=format&fit=crop"
+      }
+    ]
+  }
+]

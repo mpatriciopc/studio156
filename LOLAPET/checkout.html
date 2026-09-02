@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Seguro - Lola Pet 🐾</title>
+  <link rel="stylesheet" href="src/styles/index.css" />
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function CheckoutApp() {
+      const [formData, setFormData] = React.useState({
+        fullName: "",
+        rut: "",
+        phone: "",
+        email: "",
+        address: "",
+        commune: "Providencia",
+        notes: "",
+        saveData: true,
+        paymentMethod: "Webpay"
+      });
+
+      const [submitted, setSubmitted] = React.useState(false);
+      const [orderId, setOrderId] = React.useState("");
+
+      // Cargar datos previos guardados en localStorage si existen
+      React.useEffect(() => {
+        const saved = localStorage.getItem("lolapet_guest_customer");
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            setFormData(prev => ({ ...prev, ...parsed }));
+          } catch (e) {}
+        }
+      }, []);
+
+      const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({
+          ...prev,
+          [name]: type === "checkbox" ? checked : value
+        }));
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Si marcó "Guardar datos", persiste en localStorage para compras futuras sin requerir Login
+        if (formData.saveData) {
+          localStorage.setItem("lolapet_guest_customer", JSON.stringify({
+            fullName: formData.fullName,
+            rut: formData.rut,
+            phone: formData.phone,
+            email: formData.email,
+            address: formData.address,
+            commune: formData.commune
+          }));
+        }
+
+        const newId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+        setOrderId(newId);
+        setSubmitted(true);
+      };
+
+      if (submitted) {
+        const trackingToken = "tk_" + Math.random().toString(36).substring(2, 10);
+        return (
+          <div style={{ maxWidth: "600px", margin: "3rem auto", padding: "2rem", background: "#fff", borderRadius: "16px", border: "1px solid #e4e4e7", textAlign: "center" }}>
+            <div style={{ fontSize: "3rem" }}>🎉</div>
+            <h1 style={{ color: "#0e7490", fontWeight: 800, fontSize: "1.75rem", marginBottom: "0.5rem" }}>¡Pedido Recibido con Éxito!</h1>
+            <p style={{ color: "#52525b", marginBottom: "1.5rem" }}>Gracias por tu compra en Lola Pet. Tu peludo te lo agradecerá 🐾</p>
+
+            <div style={{ background: "#fafafa", padding: "1rem", borderRadius: "12px", border: "1px solid #e4e4e7", textAlign: "left", marginBottom: "1.5rem", fontSize: "0.875rem" }}>
+              <p><strong>N° de Orden:</strong> {orderId}</p>
+              <p><strong>Cliente:</strong> {formData.fullName} ({formData.rut})</p>
+              <p><strong>Envío a:</strong> {formData.address}, {formData.commune}</p>
+              <p><strong>Comprobante enviado a:</strong> {formData.email}</p>
+            </div>
+
+            <div style={{ background: "#e0f2fe", padding: "0.875rem", borderRadius: "10px", color: "#0369a1", fontSize: "0.8125rem", marginBottom: "1.5rem" }}>
+              🔗 <strong>Link de Seguimiento Público (Sin Login):</strong><br />
+              <code style={{ background: "#fff", padding: "2px 6px", borderRadius: "4px", marginTop: "4px", display: "inline-block" }}>
+                https://lolapet.cl/seguimiento?token={trackingToken}
+              </code>
+            </div>
+
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+              <a href="index.html" className="btn-add-cart" style={{ textDecoration: "none", padding: "0.75rem 1.5rem" }}>Volver a la Tienda</a>
+              <a
+                href={`https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20consulto%20por%20mi%20orden%20${orderId}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{ background: "#25d366", color: "#fff", border: "none", padding: "0.75rem 1.5rem", borderRadius: "99px", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px" }}
+              >
+                Consultar por WhatsApp 💬
+              </a>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div>
+          {/* Header */}
+          <header className="navbar-lola">
+            <div className="navbar-lola-container">
+              <a href="index.html" className="navbar-brand-lola">
+                🐾 <span>LOLA PET</span>
+              </a>
+              <a href="index.html" style={{ fontSize: "0.8125rem", color: "#0e7490", fontWeight: 700 }}>← Volver al Catálogo</a>
+            </div>
+          </header>
+
+          <main className="checkout-container">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
+              <h1 style={{ fontSize: "1.5rem", fontWeight: 800 }}>Checkout Rápido (Sin Login 🚀)</h1>
+              <span style={{ fontSize: "0.75rem", background: "#dcfce7", color: "#15803d", padding: "4px 10px", borderRadius: "99px", fontWeight: 700 }}>Guest Checkout Protegido</span>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem" }}>
+                <div className="form-group">
+                  <label>Nombre y Apellido *</label>
+                  <input type="text" name="fullName" className="form-input" required value={formData.fullName} onChange={handleChange} placeholder="Ej. María González" />
+                </div>
+
+                <div className="form-group">
+                  <label>RUT (Para Boleta/Factura) *</label>
+                  <input type="text" name="rut" className="form-input" required value={formData.rut} onChange={handleChange} placeholder="12.345.678-9" />
+                </div>
+
+                <div className="form-group">
+                  <label>Teléfono / WhatsApp *</label>
+                  <input type="tel" name="phone" className="form-input" required value={formData.phone} onChange={handleChange} placeholder="+56 9 1234 5678" />
+                </div>
+
+                <div className="form-group">
+                  <label>Correo Electrónico *</label>
+                  <input type="email" name="email" className="form-input" required value={formData.email} onChange={handleChange} placeholder="tu@email.com" />
+                </div>
+              </div>
+
+              <div className="form-group" style={{ marginTop: "0.5rem" }}>
+                <label>Dirección Completa de Despacho *</label>
+                <input type="text" name="address" className="form-input" required value={formData.address} onChange={handleChange} placeholder="Av. Los Leones 1234, Depto 502" />
+              </div>
+
+              <div className="form-group">
+                <label>Comuna *</label>
+                <select name="commune" className="form-input" value={formData.commune} onChange={handleChange}>
+                  <option value="Providencia">Providencia</option>
+                  <option value="Las Condes">Las Condes</option>
+                  <option value="Santiago Centro">Santiago Centro</option>
+                  <option value="Ñuñoa">Ñuñoa</option>
+                  <option value="La Reina">La Reina</option>
+                  <option value="Vitacura">Vitacura</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Notas de Entrega (Opcional)</label>
+                <input type="text" name="notes" className="form-input" value={formData.notes} onChange={handleChange} placeholder="Ej. Dejar en conserjería con Don Pedro" />
+              </div>
+
+              {/* Checkbox para autocompletar en próximas compras sin requerir cuenta */}
+              <div style={{ background: "#f4f4f5", padding: "0.75rem", borderRadius: "10px", margin: "1rem 0", display: "flex", alignItems: "center", gap: "8px" }}>
+                <input type="checkbox" id="saveData" name="saveData" checked={formData.saveData} onChange={handleChange} />
+                <label htmlFor="saveData" style={{ fontSize: "0.8125rem", margin: 0, cursor: "pointer" }}>
+                  <strong>Recordar mis datos en este navegador</strong> para futuras compras rápidas (sin contraseñas) ⚡
+                </label>
+              </div>
+
+              <div style={{ marginTop: "1.5rem" }}>
+                <h3 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "0.75rem" }}>Selecciona Método de Pago</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                  {["Webpay", "MercadoPago", "Transferencia"].map(method => (
+                    <label
+                      key={method}
+                      style={{
+                        padding: "0.75rem",
+                        border: "2px solid",
+                        borderColor: formData.paymentMethod === method ? "#0e7490" : "#e4e4e7",
+                        borderRadius: "10px",
+                        textAlign: "center",
+                        cursor: "pointer",
+                        fontWeight: 700,
+                        fontSize: "0.875rem",
+                        background: formData.paymentMethod === method ? "#ecfeff" : "#fff"
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value={method}
+                        checked={formData.paymentMethod === method}
+                        onChange={handleChange}
+                        style={{ display: "none" }}
+                      />
+                      {method === "Webpay" && "💳 Webpay Plus"}
+                      {method === "MercadoPago" && "🛍️ Mercado Pago"}
+                      {method === "Transferencia" && "🏦 Transferencia"}
+                    </label>
+                  ))}
+                </div>
+
+                <button type="submit" className="btn-add-cart" style={{ padding: "0.875rem", fontSize: "1rem" }}>
+                  Confirmar y Pagar Pedido 🔒
+                </button>
+              </div>
+            </form>
+          </main>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<CheckoutApp />);
+  </script>
+</body>
+</html>
