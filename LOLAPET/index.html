@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lola Pet - Tu mascota feliz, tu tranquilidad en casa 🐾</title>
+  <title>Lola Pet - Tu mascota feliz, tu tranquilidad en casa</title>
   <style>
     :root {
       --color-primary: #0e7490;
@@ -18,18 +18,22 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: var(--color-bg); color: var(--color-text-primary); line-height: 1.5; }
 
+    /* SVG Flat Icons */
+    .icon-flat { width: 18px; height: 18px; fill: currentColor; display: inline-block; vertical-align: middle; }
+    .icon-flat-lg { width: 22px; height: 22px; fill: currentColor; }
+
     /* Navbar Header */
     .header-nav { position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 0.75rem 1rem; }
     .header-container { max-width: 1150px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .brand { font-size: 1.4rem; font-weight: 900; color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .brand { font-size: 1.4rem; font-weight: 900; color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
     .switcher-pill { display: flex; background: #f4f4f5; padding: 4px; border-radius: 99px; border: 1px solid var(--color-border); }
-    .switcher-btn { border: none; background: transparent; padding: 6px 16px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; }
+    .switcher-btn { border: none; background: transparent; padding: 6px 16px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
     .switcher-btn.active { background: var(--color-primary); color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
     .cart-btn { background: #ecfeff; border: 1px solid #cff4fc; padding: 6px 16px; border-radius: 99px; font-weight: 800; color: var(--color-primary); cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; font-size: 0.875rem; }
 
-    /* Hero Section con Ilustración de Fondo */
+    /* Hero Section */
     .hero-banner { 
       background: linear-gradient(135deg, #0e7490 0%, #155e75 100%), url('src/styles/hero-pattern.png');
       background-blend-mode: overlay;
@@ -41,18 +45,18 @@
       margin-bottom: 2.5rem; 
       position: relative;
     }
-    .hero-badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(6px); padding: 6px 16px; border-radius: 99px; font-size: 0.8125rem; font-weight: 800; display: inline-block; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .hero-badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(6px); padding: 6px 16px; border-radius: 99px; font-size: 0.8125rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
     .hero-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.75rem; line-height: 1.2; }
     .hero-sub { font-size: 1.15rem; opacity: 0.95; max-width: 650px; margin: 0 auto 1.75rem auto; }
     .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-hero { padding: 0.75rem 1.75rem; border-radius: 99px; font-weight: 800; font-size: 0.9375rem; border: none; cursor: pointer; text-decoration: none; transition: transform 0.2s; }
+    .btn-hero { padding: 0.75rem 1.75rem; border-radius: 99px; font-weight: 800; font-size: 0.9375rem; border: none; cursor: pointer; text-decoration: none; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 8px; }
     .btn-hero-primary { background: var(--color-secondary); color: #18181b; }
     .btn-hero-secondary { background: rgba(255,255,255,0.15); color: #ffffff; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.3); }
 
     /* Catálogo & Categorías */
     .catalog-container { max-width: 1150px; margin: 0 auto; padding: 0 1rem 3rem; }
     .category-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
-    .category-btn { border: 1px solid var(--color-border); background: #fff; padding: 7px 18px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; }
+    .category-btn { border: 1px solid var(--color-border); background: #fff; padding: 7px 18px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .category-btn.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 
     .grid-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
@@ -60,8 +64,8 @@
     .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); }
     .product-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: #f4f4f5; margin-bottom: 0.75rem; cursor: pointer; }
 
-    /* Badges */
-    .badge { position: absolute; top: 1.5rem; left: 1.5rem; padding: 4px 10px; border-radius: 99px; font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 10; }
+    /* Badges Flat */
+    .badge { position: absolute; top: 1.5rem; left: 1.5rem; padding: 4px 10px; border-radius: 99px; font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 10; letter-spacing: 0.5px; }
     .badge-oferta { background: #ef4444; }
     .badge-destacado { background: #f59e0b; }
     .badge-nuevo { background: #10b981; }
@@ -71,7 +75,7 @@
     .product-price { font-size: 1.25rem; font-weight: 900; color: #18181b; }
     .old-price { font-size: 0.8125rem; color: #a1a1aa; text-decoration: line-through; margin-left: 6px; }
 
-    .btn-add { width: 100%; background: var(--color-primary); color: #fff; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 0.75rem; transition: background 0.2s; }
+    .btn-add { width: 100%; background: var(--color-primary); color: #fff; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 0.75rem; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-add:hover { background: var(--color-primary-hover); }
 
     /* PDP Modal */
@@ -85,15 +89,17 @@
     /* Footer Enriquecido */
     footer { background: #18181b; color: #a1a1aa; padding: 4rem 1rem 2rem 1rem; margin-top: 4rem; font-size: 0.875rem; }
     .footer-container { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
-    .footer-title { color: #ffffff; font-weight: 800; font-size: 1.05rem; margin-bottom: 1rem; }
+    .footer-title { color: #ffffff; font-weight: 800; font-size: 1.05rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
     .footer-link { color: #a1a1aa; text-decoration: none; transition: color 0.2s; }
     .footer-link:hover { color: #ffffff; }
 
-    .social-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #27272a; border-radius: 50%; color: #fff; text-decoration: none; margin-right: 8px; }
+    .social-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #27272a; border-radius: 50%; color: #fff; text-decoration: none; margin-right: 8px; transition: background 0.2s; }
+    .social-btn:hover { background: var(--color-primary); }
 
-    /* Botón Flotante WhatsApp */
+    /* Botón Flotante WhatsApp Flat SVG */
     .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; border-radius: 99px; padding: 12px 22px; font-weight: 800; text-decoration: none; box-shadow: 0 6px 16px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 8px; z-index: 200; font-size: 0.9375rem; }
+    .btn-whatsapp svg { width: 20px; height: 20px; fill: #ffffff; }
   </style>
 </head>
 <body>
@@ -101,28 +107,42 @@
   <!-- Header -->
   <header class="header-nav">
     <div class="header-container">
-      <a href="index.html" class="brand">🐾 LOLA PET</a>
+      <a href="index.html" class="brand">
+        <!-- SVG Flat Paw Icon -->
+        <svg class="icon-flat-lg" viewBox="0 0 24 24"><path d="M12 14c-2.76 0-5 1.79-5 4 0 1.66 1.34 3 3 3h4c1.66 0 3-1.34 3-3 0-2.21-2.24-4-5-4zm-4.5-2.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-11-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm13 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+        LOLA PET
+      </a>
 
       <div class="switcher-pill">
         <button class="switcher-btn active" id="btn-all" onclick="filterSpecies('all')">Todos</button>
-        <button class="switcher-btn" id="btn-dog" onclick="filterSpecies('dog')">🐶 Perros</button>
-        <button class="switcher-btn" id="btn-cat" onclick="filterSpecies('cat')">🐱 Gatos</button>
+        <button class="switcher-btn" id="btn-dog" onclick="filterSpecies('dog')">
+          <svg class="icon-flat" viewBox="0 0 24 24"><path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5S6 12.83 6 12s-.67-1.5-1.5-1.5zm15 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm-7.5-6C8.46 4.5 5.5 7.46 5.5 11c0 2.22 1.21 4.15 3 5.19V19.5c0 .83.67 1.5 1.5 1.5h4c.83 0 1.5-.67 1.5-1.5v-3.31c1.79-1.04 3-2.97 3-5.19 0-3.54-2.96-6.5-6.5-6.5z"/></svg>
+          Perros
+        </button>
+        <button class="switcher-btn" id="btn-cat" onclick="filterSpecies('cat')">
+          <svg class="icon-flat" viewBox="0 0 24 24"><path d="M12 4C7.58 4 4 7.58 4 12c0 2.5 1.15 4.73 2.95 6.2L5 21h14l-1.95-2.8C18.85 16.73 20 14.5 20 12c0-4.42-3.58-8-8-8zm-3 7c.83 0 1.5.67 1.5 1.5S9.83 14 9 14s-1.5-.67-1.5-1.5S8.17 11 9 11zm6 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/></svg>
+          Gatos
+        </button>
       </div>
 
       <a href="checkout.html" class="cart-btn">
-        🛒 <span>Carrito</span> (<span id="cart-count">0</span>)
+        <svg class="icon-flat" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25z"/></svg>
+        Carrito (<span id="cart-count">0</span>)
       </a>
     </div>
   </header>
 
-  <!-- HERO BANNER RESTAURADO -->
+  <!-- HERO BANNER -->
   <section class="hero-banner">
-    <span class="hero-badge">🚀 Envío Rápido 24h - 48h en Santiago y Regiones</span>
-    <h1 class="hero-title">Tu mascota feliz, tu tranquilidad en casa 🐾</h1>
+    <span class="hero-badge">
+      <svg class="icon-flat" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+      Envío Rápido 24h - 48h en Santiago y Regiones
+    </span>
+    <h1 class="hero-title">Tu mascota feliz, tu tranquilidad en casa</h1>
     <p class="hero-sub">Alimentos Super Premium, Snacks y Salud Felina/Canina con despacho directo hasta tu puerta.</p>
     <div class="hero-ctas">
-      <button class="btn-hero btn-hero-primary" onclick="filterSpecies('dog')">Explorar Perros 🐶</button>
-      <button class="btn-hero btn-hero-secondary" onclick="filterSpecies('cat')">Explorar Gatos 🐱</button>
+      <button class="btn-hero btn-hero-primary" onclick="filterSpecies('dog')">Explorar Perros</button>
+      <button class="btn-hero btn-hero-secondary" onclick="filterSpecies('cat')">Explorar Gatos</button>
     </div>
   </section>
 
@@ -133,13 +153,13 @@
       <a href="checkout.html" style="color: var(--color-primary); font-weight: 800; text-decoration: none;">Ir al Checkout Rápido →</a>
     </div>
 
-    <!-- Categorías Pills -->
+    <!-- Categorías Pills Flat -->
     <div class="category-pills">
       <button class="category-btn active" onclick="filterCategory('all', this)">Todas las Categorías</button>
-      <button class="category-btn" onclick="filterCategory('Alimentos', this)">🍖 Alimentos Super Premium</button>
-      <button class="category-btn" onclick="filterCategory('Snacks', this)">🦴 Snacks & Premios</button>
-      <button class="category-btn" onclick="filterCategory('Farmacia', this)">💊 Farmacia & Pipetas</button>
-      <button class="category-btn" onclick="filterCategory('Arenas', this)">🐱 Arenas Sanitarias</button>
+      <button class="category-btn" onclick="filterCategory('Alimentos', this)">Alimentos Super Premium</button>
+      <button class="category-btn" onclick="filterCategory('Snacks', this)">Snacks & Premios</button>
+      <button class="category-btn" onclick="filterCategory('Farmacia', this)">Farmacia & Pipetas</button>
+      <button class="category-btn" onclick="filterCategory('Arenas', this)">Arenas Sanitarias</button>
     </div>
 
     <!-- Grilla de Productos -->
@@ -154,21 +174,28 @@
     </div>
   </div>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <!-- BOTÓN FLOTANTE WHATSAPP FLAT SVG -->
   <a href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta" target="_blank" class="btn-whatsapp">
-    💬 WhatsApp Directo
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    WhatsApp Directo
   </a>
 
-  <!-- FOOTER ENRIQUECIDO RESTAURADO -->
+  <!-- FOOTER ENRIQUECIDO FLAT -->
   <footer>
     <div class="footer-container">
       <div>
-        <div class="footer-title">🐾 LOLA PET</div>
+        <div class="footer-title">
+          <svg class="icon-flat-lg" viewBox="0 0 24 24"><path d="M12 14c-2.76 0-5 1.79-5 4 0 1.66 1.34 3 3 3h4c1.66 0 3-1.34 3-3 0-2.21-2.24-4-5-4zm-4.5-2.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm9 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-11-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm13 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+          LOLA PET
+        </div>
         <p style="line-height: 1.6; margin-bottom: 1.25rem;">Tu mascota feliz, tu tranquilidad en casa. Alimentos seleccionados, antiparasitarios y accesorios en Chile.</p>
         <div>
-          <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
-          <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
-          <a href="https://tiktok.com" target="_blank" class="social-btn">🎵</a>
+          <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">
+            <svg class="icon-flat" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook">
+            <svg class="icon-flat" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>
+          </a>
         </div>
       </div>
 
@@ -176,8 +203,8 @@
         <div class="footer-title">Mapa del Sitio</div>
         <ul class="footer-links">
           <li><a href="index.html" class="footer-link">Inicio</a></li>
-          <li><a href="index.html" onclick="filterSpecies('dog'); return false;" class="footer-link">Catálogo Perros 🐶</a></li>
-          <li><a href="index.html" onclick="filterSpecies('cat'); return false;" class="footer-link">Catálogo Gatos 🐱</a></li>
+          <li><a href="index.html" onclick="filterSpecies('dog'); return false;" class="footer-link">Catálogo Perros</a></li>
+          <li><a href="index.html" onclick="filterSpecies('cat'); return false;" class="footer-link">Catálogo Gatos</a></li>
           <li><a href="checkout.html" class="footer-link">Checkout sin Login</a></li>
         </ul>
       </div>
@@ -186,27 +213,27 @@
         <div class="footer-title">Links de Interés</div>
         <ul class="footer-links">
           <li><a href="#politicas" class="footer-link">Políticas de Envío y Devoluciones</a></li>
-          <li><a href="#terminos" className="footer-link">Términos del Servicio</a></li>
-          <li><a href="#preguntas" className="footer-link">Preguntas Frecuentes (FAQ)</a></li>
-          <li><a href="#asesoria" className="footer-link">Asesoría Veterinaria Gratuita</a></li>
+          <li><a href="#terminos" class="footer-link">Términos del Servicio</a></li>
+          <li><a href="#preguntas" class="footer-link">Preguntas Frecuentes (FAQ)</a></li>
+          <li><a href="#asesoria" class="footer-link">Asesoría Veterinaria Gratuita</a></li>
         </ul>
       </div>
 
       <div>
         <div class="footer-title">Despacho & Pago Seguro</div>
-        <p style="margin-bottom: 0.5rem;">⚡ Entregas en 24h a 48h hábiles en RM.</p>
-        <p style="margin-bottom: 1rem;">📍 Envíos a todo Chile vía Starken/Chilexpress.</p>
-        <div style="font-size: 1.35rem; display: flex; gap: 10px;">
-          <span title="Webpay Plus">💳</span>
-          <span title="Mercado Pago">🛍️</span>
-          <span title="Transferencia Directa">🏦</span>
+        <p style="margin-bottom: 0.5rem;">Entregas en 24h a 48h hábiles en RM.</p>
+        <p style="margin-bottom: 1rem;">Envíos a todo Chile vía Starken/Chilexpress.</p>
+        <div style="display: flex; gap: 10px; color: #ffffff;">
+          <span style="background: #27272a; padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">Webpay</span>
+          <span style="background: #27272a; padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">Mercado Pago</span>
+          <span style="background: #27272a; padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 0.75rem;">Transferencia</span>
         </div>
       </div>
     </div>
 
     <div style="max-width: 1150px; margin: 3rem auto 0 auto; padding-top: 1.5rem; border-top: 1px solid #27272a; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem;">
       <span>© 2026 Lola Pet SpA. Todos los derechos reservados.</span>
-      <span>Hecho con ❤️ para perros y gatos en Chile</span>
+      <span>Diseño profesional e-commerce en Chile</span>
     </div>
   </footer>
 
@@ -344,7 +371,7 @@
 
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <button class="btn-add" style="padding: 0.875rem; font-size: 1rem;" onclick="addToCart('${p.name}'); closePdp();">Añadir al Carrito 🛒</button>
-            <a href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta%20sobre%20${safeName}" target="_blank" style="text-align: center; padding: 0.6rem; border-radius: 99px; border: 1px solid #25d366; color: #16a34a; font-weight: 700; font-size: 0.8125rem; text-decoration: none; background: #f0fdf4;">💬 Consultar dudas con un especialista por WhatsApp</a>
+            <a href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta%20sobre%20${safeName}" target="_blank" style="text-align: center; padding: 0.6rem; border-radius: 99px; border: 1px solid #25d366; color: #16a34a; font-weight: 700; font-size: 0.8125rem; text-decoration: none; background: #f0fdf4;">Consultar dudas con un especialista por WhatsApp</a>
           </div>
         </div>
       `;
