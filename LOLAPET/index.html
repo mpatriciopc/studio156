@@ -306,10 +306,12 @@
         </div>
       `;
 
+      document.body.style.overflow = "hidden";
       document.getElementById("pdp-modal").classList.add("active");
     }
 
     function closePdp() {
+      document.body.style.overflow = "";
       document.getElementById("pdp-modal").classList.remove("active");
     }
 
