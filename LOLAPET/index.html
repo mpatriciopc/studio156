@@ -27,7 +27,7 @@
     .header-container { max-width: 1150px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .brand { font-size: 1.4rem; font-weight: 900; color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-    .switcher-pill { display: flex; background: #f4f4f5; padding: 4px; border-radius: 99px; border: 1px solid var(--color-border); }
+    .switcher-pill { display: flex; background: #f4f4f5; padding: 4px; border-radius: 99px; border: 1px solid var(--color-border); transition: transform 0.3s; }
     .switcher-btn { border: none; background: transparent; padding: 6px 16px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
     .switcher-btn.active { background: var(--color-primary); color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
@@ -80,7 +80,9 @@
     .old-price { font-size: 0.8125rem; color: #a1a1aa; text-decoration: line-through; margin-left: 6px; }
 
     .btn-add { width: 100%; background: var(--color-primary); color: #fff; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 0.75rem; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .btn-add:hover { background: var(--color-primary-hover); }    /* PDP Modal */
+    .btn-add:hover { background: var(--color-primary-hover); }
+
+    /* PDP Modal */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.active { display: flex; }
     .modal-content { background: #fff; border-radius: 20px; max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); }
@@ -137,6 +139,100 @@
     }
     .btn-whatsapp-inline svg { width: 16px; height: 16px; fill: #ffffff; }
 
+    /* -------------------------------------------------------------
+       SISTEMA DE TUTORIAL ONBOARDING INTERACTIVO (HIGHLIGHTER)
+    ------------------------------------------------------------- */
+    .tour-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(3px);
+      z-index: 10000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .tour-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Resaltador dinámico que encuadra la característica */
+    .tour-highlight-box {
+      position: fixed;
+      z-index: 10001;
+      border: 3px solid #f59e0b;
+      border-radius: 12px;
+      box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.78), 0 0 25px rgba(245, 158, 11, 0.8);
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Card del Tutorial */
+    .tour-card {
+      position: fixed;
+      z-index: 10002;
+      background: #ffffff;
+      color: #18181b;
+      width: 90%;
+      max-width: 380px;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tour-step-badge {
+      display: inline-block;
+      background: #ecfeff;
+      color: #0e7490;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .tour-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+    .tour-desc {
+      font-size: 0.875rem;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .tour-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-tour {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8125rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-tour-skip {
+      background: transparent;
+      color: #64748b;
+    }
+    .btn-tour-skip:hover {
+      color: #0f172a;
+    }
+    .btn-tour-next {
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+    .btn-tour-next:hover {
+      background: var(--color-primary-hover);
+    }
+
     /* Media Queries para Dispositivos Móviles */
     @media (max-width: 768px) {
       .modal-overlay {
@@ -178,6 +274,11 @@
         width: 26px !important;
         height: 26px !important;
       }
+      .tour-card {
+        left: 5% !important;
+        right: 5% !important;
+        width: 90% !important;
+      }
     }
   </style>
 </head>
@@ -192,7 +293,8 @@
         LOLA PET
       </a>
 
-      <div class="switcher-pill">
+      <!-- FEATURE TARGET 1: Switcher por Especie -->
+      <div class="switcher-pill" id="tour-switcher">
         <button class="switcher-btn active" id="btn-all" onclick="filterSpecies('all')">Todos</button>
         <button class="switcher-btn" id="btn-dog" onclick="filterSpecies('dog')">
           🐶 <span>Perros</span>
@@ -203,11 +305,13 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 10px;">
-        <a href="admin.html" class="admin-link-btn" title="Panel Administrador Lola Pet">
+        <!-- FEATURE TARGET 5: Panel Admin -->
+        <a href="admin.html" class="admin-link-btn" id="tour-admin" title="Panel Administrador Lola Pet">
           ⚙️ <span>Admin</span>
         </a>
 
-        <a href="checkout.html" class="cart-btn">
+        <!-- FEATURE TARGET 4: Carrito y Checkout -->
+        <a href="checkout.html" class="cart-btn" id="tour-cart">
           <svg class="icon-flat" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25z"/></svg>
           Carrito (<span id="cart-count">0</span>)
         </a>
@@ -226,6 +330,7 @@
     <div class="hero-ctas">
       <button class="btn-hero btn-hero-primary" onclick="filterSpecies('dog')">Explorar Perros</button>
       <button class="btn-hero btn-hero-secondary" onclick="filterSpecies('cat')">Explorar Gatos</button>
+      <button class="btn-hero" style="background: rgba(255,255,255,0.25); color: #fff;" onclick="startTour()">💡 Ver Tour de la Web</button>
     </div>
   </section>
 
@@ -236,8 +341,8 @@
       <a href="checkout.html" style="color: var(--color-primary); font-weight: 800; text-decoration: none;">Ir al Checkout Rápido →</a>
     </div>
 
-    <!-- Categorías Pills Flat -->
-    <div class="category-pills">
+    <!-- FEATURE TARGET 2: Categorías Pills -->
+    <div class="category-pills" id="tour-categories">
       <button class="category-btn active" onclick="filterCategory('all', this)">Todas las Categorías</button>
       <button class="category-btn" onclick="filterCategory('Alimentos', this)">Alimentos Super Premium</button>
       <button class="category-btn" onclick="filterCategory('Snacks', this)">Snacks & Premios</button>
@@ -245,7 +350,7 @@
       <button class="category-btn" onclick="filterCategory('Arenas', this)">Arenas Sanitarias</button>
     </div>
 
-    <!-- Grilla de Productos -->
+    <!-- FEATURE TARGET 3: Grilla de Productos -->
     <div class="grid-products" id="product-grid"></div>
   </main>
 
@@ -258,9 +363,22 @@
   </div>
 
   <!-- BOTÓN FLOTANTE WHATSAPP (CIRCULO ESTÁNDAR 56x56) -->
-  <a href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta" target="_blank" class="btn-whatsapp" title="Atención por WhatsApp">
+  <a href="https://wa.me/56912345678?text=Hola%20Lola%20Pet,%20tengo%20una%20consulta" target="_blank" class="btn-whatsapp" id="tour-whatsapp" title="Atención por WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
   </a>
+
+  <!-- ELEMENTOS HTML DEL TUTORIAL ONBOARDING -->
+  <div class="tour-overlay" id="tour-overlay"></div>
+  <div class="tour-highlight-box" id="tour-box" style="display: none;"></div>
+  <div class="tour-card" id="tour-card" style="display: none;">
+    <span class="tour-step-badge" id="tour-step-badge">Paso 1 de 5</span>
+    <h3 class="tour-title" id="tour-title">Título del Feature</h3>
+    <p class="tour-desc" id="tour-desc">Explicación del feature resaltado.</p>
+    <div class="tour-actions">
+      <button class="btn-tour btn-tour-skip" onclick="endTour()">Saltar Tutorial</button>
+      <button class="btn-tour btn-tour-next" id="tour-btn-next" onclick="nextTourStep()">Siguiente →</button>
+    </div>
+  </div>
 
   <!-- FOOTER ENRIQUECIDO FLAT -->
   <footer>
@@ -412,7 +530,7 @@
       });
 
       grid.innerHTML = filtered.map(p => `
-        <div class="product-card">
+        <div class="product-card" id="card-${p.id}">
           ${p.badge ? `<span class="badge ${p.badgeClass}">${p.badge}</span>` : ""}
           <img src="${p.image}" alt="${p.name}" class="product-img" onclick="openPdp('${p.id}')" />
           <span class="product-brand">${p.brand} • ${p.category}</span>
@@ -492,6 +610,124 @@
     }
 
     renderCatalog();
+
+    /* -------------------------------------------------------------
+       LÓGICA DEL TUTORIAL ONBOARDING INTERACTIVO
+    ------------------------------------------------------------- */
+    const tourSteps = [
+      {
+        targetId: "tour-switcher",
+        title: "🐶/🐱 Switcher por Especie",
+        desc: "Filtra rápidamente todo el sitio para ver productos exclusivos para Perros o Gatos con un solo clic."
+      },
+      {
+        targetId: "tour-categories",
+        title: "🏷️ Categorías Especializadas",
+        desc: "Encuentra Alimentos Super Premium, Snacks, Farmacia y Arenas Sanitarias ordenados de forma intuitiva."
+      },
+      {
+        targetId: "card-p1",
+        title: "👁️ Ficha de Producto Individual (PDP)",
+        desc: "Haz clic en cualquier producto para abrir su Ficha Completa con tabla de beneficios, stock y atención por WhatsApp."
+      },
+      {
+        targetId: "tour-cart",
+        title: "🛒 Checkout sin Registro (ADR-001)",
+        desc: "Compra en 1 paso sin crear contraseñas. Validación instantánea de RUT y envío directo a tu comuna."
+      },
+      {
+        targetId: "tour-admin",
+        title: "⚙️ Panel Administrador Integrado",
+        desc: "Accede al Dashboard estilo WooCommerce para gestionar inventario, stock en bodega, pedidos y clientes en tiempo real."
+      }
+    ];
+
+    let currentTourStep = 0;
+
+    function startTour() {
+      currentTourStep = 0;
+      document.getElementById("tour-overlay").classList.add("active");
+      document.getElementById("tour-box").style.display = "block";
+      document.getElementById("tour-card").style.display = "block";
+      renderTourStep();
+    }
+
+    function renderTourStep() {
+      const step = tourSteps[currentTourStep];
+      const target = document.getElementById(step.targetId);
+
+      if (!target) {
+        nextTourStep();
+        return;
+      }
+
+      // Scroll suave hacia el objetivo si está fuera de pantalla
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      setTimeout(() => {
+        const rect = target.getBoundingClientRect();
+        const box = document.getElementById("tour-box");
+        const card = document.getElementById("tour-card");
+
+        // Posicionar caja de resaltado
+        box.style.top = `${rect.top - 6}px`;
+        box.style.left = `${rect.left - 6}px`;
+        box.style.width = `${rect.width + 12}px`;
+        box.style.height = `${rect.height + 12}px`;
+
+        // Actualizar contenido de la tarjeta
+        document.getElementById("tour-step-badge").innerText = `Paso ${currentTourStep + 1} de ${tourSteps.length}`;
+        document.getElementById("tour-title").innerText = step.title;
+        document.getElementById("tour-desc").innerText = step.desc;
+
+        // Posicionar tarjeta inteligente (evitando salir de pantalla)
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          card.style.top = rect.bottom + 120 > window.innerHeight ? `${rect.top - 200}px` : `${rect.bottom + 16}px`;
+          card.style.left = "5%";
+        } else {
+          let cardTop = rect.bottom + 20;
+          let cardLeft = rect.left;
+
+          if (cardTop + 220 > window.innerHeight) {
+            cardTop = rect.top - 220;
+          }
+          if (cardLeft + 380 > window.innerWidth) {
+            cardLeft = window.innerWidth - 400;
+          }
+
+          card.style.top = `${Math.max(20, cardTop)}px`;
+          card.style.left = `${Math.max(20, cardLeft)}px`;
+        }
+
+        const nextBtn = document.getElementById("tour-btn-next");
+        if (currentTourStep === tourSteps.length - 1) {
+          nextBtn.innerText = "¡Entendido, Comenzar! 🎉";
+        } else {
+          nextBtn.innerText = "Siguiente →";
+        }
+      }, 350);
+    }
+
+    function nextTourStep() {
+      if (currentTourStep < tourSteps.length - 1) {
+        currentTourStep++;
+        renderTourStep();
+      } else {
+        endTour();
+      }
+    }
+
+    function endTour() {
+      document.getElementById("tour-overlay").classList.remove("active");
+      document.getElementById("tour-box").style.display = "none";
+      document.getElementById("tour-card").style.display = "none";
+    }
+
+    // Auto-iniciar tour en la primera visita o si viene con query param ?tour=true
+    if (window.location.search.includes("tour=true")) {
+      setTimeout(startTour, 600);
+    }
   </script>
 </body>
 </html>
