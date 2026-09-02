@@ -4,135 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lola Pet - Tu mascota feliz, tu tranquilidad en casa 🐾</title>
-  <link rel="stylesheet" href="src/styles/index.css" />
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root {
+      --color-primary: #0e7490;
+      --color-primary-hover: #155e75;
+      --color-secondary: #f59e0b;
+      --color-bg: #fafafa;
+      --color-surface: #ffffff;
+      --color-text-primary: #18181b;
+      --color-text-muted: #52525b;
+      --color-border: #e4e4e7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--color-bg); color: var(--color-text-primary); }
+
+    .header-nav { position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 0.75rem 1rem; }
+    .header-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { font-size: 1.35rem; font-weight: 900; color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+    .switcher-pill { display: flex; background: #f4f4f5; padding: 4px; border-radius: 99px; border: 1px solid var(--color-border); }
+    .switcher-btn { border: none; background: transparent; padding: 6px 14px; border-radius: 99px; font-weight: 700; font-size: 0.8125rem; cursor: pointer; color: var(--color-text-muted); transition: all 0.2s; }
+    .switcher-btn.active { background: var(--color-primary); color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+    .cart-btn { background: #ecfeff; border: 1px solid #cff4fc; padding: 6px 14px; border-radius: 99px; font-weight: 800; color: var(--color-primary); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    .hero-banner { background: linear-gradient(135deg, #0e7490, #155e75); color: #fff; padding: 3rem 1rem; text-align: center; border-radius: 0 0 24px 24px; margin-bottom: 2rem; }
+    .hero-title { font-size: 2.25rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .hero-sub { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+    .catalog-container { max-width: 1100px; margin: 0 auto; padding: 0 1rem 3rem; }
+    .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+
+    .grid-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-card { background: #fff; border-radius: 16px; border: 1px solid var(--color-border); padding: 1rem; transition: transform 0.2s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+    .product-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: #f4f4f5; margin-bottom: 0.75rem; }
+    .product-brand { font-size: 0.75rem; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; }
+    .product-name { font-size: 1rem; font-weight: 800; margin: 2px 0 0.5rem; }
+    .product-price { font-size: 1.25rem; font-weight: 900; color: #18181b; }
+
+    .btn-add { width: 100%; background: var(--color-primary); color: #fff; border: none; padding: 0.75rem; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: auto; transition: background 0.2s; }
+    .btn-add:hover { background: var(--color-primary-hover); }
+
+    footer { background: #18181b; color: #a1a1aa; padding: 3rem 1rem; margin-top: 3rem; font-size: 0.875rem; }
+    .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer-title { color: #fff; font-weight: 800; margin-bottom: 0.75rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; border-radius: 99px; padding: 12px 20px; font-weight: 800; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 8px; z-index: 200; }
+  </style>
 </head>
 <body>
-  <div id="root"></div>
 
-  <!-- Script de cliente estático para vista rápida demo -->
-  <script type="text/babel">
-    const mockProducts = [
-      {
-        id: "rec01",
-        name: "Alimento Super Premium Perro Adulto",
-        brand: "NutriPet",
-        species: "dog",
-        category: "Alimentos",
-        variants: [
-          { sku: "NP-DOG-3K", format: "3 Kg", price: 14990, salePrice: 12990, imageUrl: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600" },
-          { sku: "NP-DOG-15K", format: "15 Kg", price: 48990, imageUrl: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600" }
-        ]
-      },
-      {
-        id: "rec02",
-        name: "Snack Dental Stick Masticables Perro",
-        brand: "DentalCare",
-        species: "dog",
-        category: "Snacks",
-        variants: [
-          { sku: "DC-DOG-7P", format: "Pack 7 Unidades", price: 4990, imageUrl: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=600" }
-        ]
-      },
-      {
-        id: "rec03",
-        name: "Antiparasitario Interno y Externo Bravecto",
-        brand: "Bravecto",
-        species: "dog",
-        category: "Farmacia/Higiene",
-        variants: [
-          { sku: "BRV-DOG-1020", format: "Perro 10-20 Kg", price: 32990, imageUrl: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600" }
-        ]
-      },
-      {
-        id: "rec04",
-        name: "Alimento Felino Salmón & Salmón Salvaje",
-        brand: "CatGourmet",
-        species: "cat",
-        category: "Alimentos",
-        variants: [
-          { sku: "CG-CAT-15K", format: "1.5 Kg", price: 11990, imageUrl: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600" },
-          { sku: "CG-CAT-7K", format: "7.5 Kg", price: 36990, imageUrl: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600" }
-        ]
-      },
-      {
-        id: "rec05",
-        name: "Arena Sanitaria Aglomerante Lavanda",
-        brand: "PurrClean",
-        species: "cat",
-        category: "Farmacia/Higiene",
-        variants: [
-          { sku: "PC-ARENA-4KG", format: "Bolsa 4 Kg", price: 6490, imageUrl: "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600" }
-        ]
-      }
+  <header class="header-nav">
+    <div class="header-container">
+      <a href="index.html" class="brand">🐾 LOLA PET</a>
+
+      <div class="switcher-pill">
+        <button class="switcher-btn active" id="btn-all" onclick="filterCatalog('all')">Todos</button>
+        <button class="switcher-btn" id="btn-dog" onclick="filterCatalog('dog')">🐶 Perros</button>
+        <button class="switcher-btn" id="btn-cat" onclick="filterCatalog('cat')">🐱 Gatos</button>
+      </div>
+
+      <button class="cart-btn" onclick="alert('Checkout en construcción')">
+        🛒 Carrito (<span id="cart-count">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <section class="hero-banner">
+    <h1 class="hero-title">Todo para tu consentido 🐾</h1>
+    <p class="hero-sub">Alimentos Super Premium, Snacks y Salud Felina/Canina con despacho directo en 24h.</p>
+  </section>
+
+  <main class="catalog-container">
+    <div class="section-title">
+      <h2>Catálogo Destacado</h2>
+    </div>
+
+    <div class="grid-products" id="product-grid"></div>
+  </main>
+
+  <a href="https://wa.me/56912345678" target="_blank" class="btn-whatsapp">
+    💬 WhatsApp Directo
+  </a>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div class="footer-title">LOLA PET 🐾</div>
+        <p>Tu tienda de mascotas de confianza. Despachos rápidos y atención personalizada.</p>
+      </div>
+      <div>
+        <div class="footer-title">Sitemap</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Catálogo Perros</a></li>
+          <li><a href="index.html">Catálogo Gatos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Medios de Pago</div>
+        <p>💳 Webpay Plus<br />🛍️ Mercado Pago<br />🏦 Transferencia Directa</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: "p1", name: "Alimento Super Premium Perro Adulto", brand: "NutriPet", species: "dog", price: 14990, image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400" },
+      { id: "p2", name: "Snack Dental Stick Perros (Pack 7)", brand: "DentalCare", species: "dog", price: 4990, image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=400" },
+      { id: "p3", name: "Alimento Feline Care Gato Esterilizado", brand: "CatNutri", species: "cat", price: 18990, image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400" },
+      { id: "p4", name: "Arena Sanitaria Aglomerante Gato 10kg", brand: "CleanCat", species: "cat", price: 9990, image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=400" }
     ];
 
-    function App() {
-      const [species, setSpecies] = React.useState("all");
-      const [category, setCategory] = React.useState("all");
-      const [cart, setCart] = React.useState([]);
-      const [isCartOpen, setIsCartOpen] = React.useState(false);
-
-      const addToCart = (product, variant) => {
-        setCart((prev) => {
-          const idx = prev.findIndex(item => item.variant.sku === variant.sku);
-          if (idx > -1) {
-            const next = [...prev];
-            next[idx].qty += 1;
-            return next;
-          }
-          return [...prev, { product, variant, qty: 1 }];
-        });
-        setIsCartOpen(true);
-      };
-
-      const filteredProducts = mockProducts.filter(p => {
-        if (species !== "all" && p.species !== species) return false;
-        if (category !== "all" && p.category !== category) return false;
-        return true;
-      });
-
-      const totalCart = cart.reduce((sum, item) => sum + (item.variant.salePrice || item.variant.price) * item.qty, 0);
-
-      return (
-        <div>
-          {/* Navbar Header */}
-          <header className="navbar-lola">
-            <div className="navbar-lola-container">
-              <a href="#" className="navbar-brand-lola">
-                🐾 <span>LOLA PET</span>
-              </a>
-
-              <div className="species-toggle">
-                <button
-                  className={`species-btn ${species === "dog" ? "active-dog" : ""}`}
-                  onClick={() => setSpecies(species === "dog" ? "all" : "dog")}
-                >
-                  🐶 Perros
-                </button>
-                <button
-                  className={`species-btn ${species === "cat" ? "active-cat" : ""}`}
-                  onClick={() => setSpecies(species === "cat" ? "all" : "cat")}
-                >
-                  🐱 Gatos
-                </button>
-              </div>
-
-              <button className="cart-btn-trigger" onClick={() => setIsCartOpen(true)}>
-                🛒 <span className="cart-badge">{cart.reduce((c, i) => c + i.qty, 0)}</span>
-              </button>
-            </div>
-          </header>
-
-          {/* Hero Section con Ilustración de Fondo */}
-          <section className="hero-banner-lola">
-            <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-              <span style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", padding: "4px 14px", borderRadius: "99px", fontSize: "0.75rem", fontWeight: 700 }}>
-                ⚡ Despacho en 24h a 48h en Santiago y Regiones
-              </span>
-              <h1 style={{ fontSize: "2.35rem", fontWeight: 800, marginTop: "0.85rem", lineHeight: 1.2 }}>Tu mascota feliz, tu tranquilidad en casa</h1>
               <p style={{ opacity: 0.95, marginTop: "0.5rem", fontSize: "1rem" }}>Alimentos seleccionados, antiparasitarios y accesorios de alta calidad para perros y gatos.</p>
             </div>
           </section>
