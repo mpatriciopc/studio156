@@ -4,115 +4,24 @@
   <meta charset="UTF-8">
   <title>Propuesta Comercial Lola Pet SpA - Studio 156</title>
   <style>
-    @page {
-      size: letter;
-      margin: 1in;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      color: #333333;
-      line-height: 1.6;
-      font-size: 11pt;
-      margin: 0;
-      padding: 2rem;
-      background-color: #ffffff;
-    }
-    .header-doc {
-      border-bottom: 3px solid #0e7490;
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .brand-title {
-      font-size: 20pt;
-      font-weight: bold;
-      color: #0e7490;
-      margin: 0;
-    }
-    .doc-subtitle {
-      font-size: 12pt;
-      color: #666666;
-      margin: 4px 0 0 0;
-    }
-    .meta-table {
-      width: 100%;
-      margin-bottom: 24px;
-      border-collapse: collapse;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-    .meta-table td {
-      padding: 8px 12px;
-      font-size: 10pt;
-    }
-    .meta-label {
-      font-weight: bold;
-      color: #0e7490;
-      width: 15%;
-    }
-    h1 {
-      font-size: 16pt;
-      color: #0e7490;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 4px;
-      margin-top: 24px;
-      margin-bottom: 12px;
-    }
-    h2 {
-      font-size: 13pt;
-      color: #1e293b;
-      margin-top: 18px;
-      margin-bottom: 8px;
-    }
-    p, li {
-      margin-bottom: 8px;
-      text-align: justify;
-    }
-    table.data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-      margin-bottom: 16px;
-    }
-    table.data-table th {
-      background-color: #0e7490;
-      color: #ffffff;
-      font-weight: bold;
-      text-align: left;
-      padding: 8px 10px;
-      font-size: 10pt;
-      border: 1px solid #0e7490;
-    }
-    table.data-table td {
-      padding: 8px 10px;
-      border: 1px solid #cbd5e1;
-      font-size: 10pt;
-    }
-    table.data-table tr:nth-child(even) {
-      background-color: #f8fafc;
-    }
-    .highlight-box {
-      background-color: #f0fdf4;
-      border-left: 4px solid #16a34a;
-      padding: 10px 14px;
-      margin: 14px 0;
-      font-size: 10pt;
-    }
-    .total-row {
-      font-weight: bold;
-      background-color: #e0f2fe !important;
-      color: #0369a1;
-    }
-    .footer-doc {
-      margin-top: 40px;
-      padding-top: 12px;
-      border-top: 1px solid #cbd5e1;
-      font-size: 9pt;
-      color: #64748b;
-      text-align: center;
-    }
+    @page { size: letter; margin: 1in; }
+    body { font-family: 'Arial', sans-serif; color: #333333; line-height: 1.6; font-size: 11pt; margin: 0; padding: 2rem; background-color: #ffffff; }
+    .header-doc { border-bottom: 3px solid #0e7490; padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .brand-title { font-size: 20pt; font-weight: bold; color: #0e7490; margin: 0; }
+    .doc-subtitle { font-size: 12pt; color: #666666; margin: 4px 0 0 0; }
+    .meta-table { width: 100%; margin-bottom: 24px; border-collapse: collapse; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .meta-table td { padding: 8px 12px; font-size: 10pt; }
+    .meta-label { font-weight: bold; color: #0e7490; width: 15%; }
+    h1 { font-size: 16pt; color: #0e7490; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-size: 13pt; color: #1e293b; margin-top: 18px; margin-bottom: 8px; }
+    p, li { margin-bottom: 8px; text-align: justify; }
+    table.data-table { width: 100%; border-collapse: collapse; margin-top: 12px; margin-bottom: 16px; }
+    table.data-table th { background-color: #0e7490; color: #ffffff; font-weight: bold; text-align: left; padding: 8px 10px; font-size: 10pt; border: 1px solid #0e7490; }
+    table.data-table td { padding: 8px 10px; border: 1px solid #cbd5e1; font-size: 10pt; }
+    table.data-table tr:nth-child(even) { background-color: #f8fafc; }
+    .highlight-box { background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 10px 14px; margin: 14px 0; font-size: 10pt; }
+    .total-row { font-weight: bold; background-color: #e0f2fe !important; color: #0369a1; }
+    .footer-doc { margin-top: 40px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 9pt; color: #64748b; text-align: center; }
   </style>
 </head>
 <body>
@@ -139,13 +48,13 @@
       <td class="meta-label">PROVEEDOR:</td>
       <td>Studio 156 — Consultoría Digital</td>
       <td class="meta-label">VERSIÓN:</td>
-      <td>1.0 (Producción / Copiar a Google Docs)</td>
+      <td>1.1 (Con Panel Admin WooCommerce Style)</td>
     </tr>
   </table>
 
   <h1>1. Resumen Ejecutivo</h1>
   <p>La presente propuesta contempla el diseño, desarrollo, blindaje de seguridad e implementación de la plataforma e-commerce de alto rendimiento para <strong>Lola Pet SpA</strong>, especializada en la venta de alimentos Super Premium, accesorios y artículos de salud felina y canina en Chile.</p>
-  <p>La solución se concibió bajo una arquitectura <strong>Headless E-Commerce</strong> optimizada para máxima velocidad de carga, experiencia de usuario fluida (sin fricción de inicio de sesión) y un backend desacoplado gestionable directamente desde <strong>Airtable</strong>, eliminando costos recurrentes de licencias de comercio electrónico tradicional.</p>
+  <p>La solución se concibió bajo una arquitectura <strong>Headless E-Commerce</strong> optimizada para máxima velocidad de carga, experiencia de usuario fluida (sin fricción de inicio de sesión) y un backend desacoplado gestionable directamente desde <strong>Airtable</strong> o mediante un <strong>Panel Administrador Privado estilo WooCommerce</strong>, eliminando costos recurrentes de licencias de comercio electrónico tradicional.</p>
 
   <h1>2. Arquitectura & Stack Tecnológico</h1>
   <table class="data-table">
@@ -163,6 +72,11 @@
         <td>Carga ultrarrápida, SEO optimizado e interfaz moderna con diseño responsive.</td>
       </tr>
       <tr>
+        <td><strong>Panel Admin</strong></td>
+        <td>Dashboard WooCommerce Style</td>
+        <td>Gestión intuitiva estilo WordPress/WooCommerce para operarios de bodega y ventas.</td>
+      </tr>
+      <tr>
         <td><strong>Diseño / Estilos</strong></td>
         <td>Vanilla CSS (Tokens HSL Pet Teal)</td>
         <td>Flexibilidad total, cero dependencias pesadas y rendimiento fluido en móviles.</td>
@@ -170,7 +84,7 @@
       <tr>
         <td><strong>Base de Datos / CMS</strong></td>
         <td>Airtable API (Headless Engine)</td>
-        <td>Gestión intuitiva de productos, variantes, inventario y pedidos por el cliente.</td>
+        <td>Gestión de productos, variantes, inventario y pedidos sincronizada en tiempo real.</td>
       </tr>
       <tr>
         <td><strong>Checkout Flow</strong></td>
@@ -191,7 +105,7 @@
     <li><strong>Selector de Especie Dinámico:</strong> Switcher fluido Perros / Gatos que filtra instantáneamente el catálogo.</li>
     <li><strong>Filtrado por Categorías:</strong> Clasificación por Alimentos Super Premium, Snacks & Premios, Farmacia & Pipetas y Arenas Sanitarias.</li>
     <li><strong>Etiquetas de Producto (Badges Flat SVG):</strong> Distintivos visuales para OFERTA (con precio tachado), DESTACADO y NUEVO.</li>
-    <li><strong>Ficha de Producto Individual (PDP Modal):** Ventana emergente interactiva con descripción técnica, lista de beneficios destacados, stock en bodega y acceso directo a asesoría por WhatsApp.</li>
+    <li><strong>Ficha de Producto Individual (PDP Modal):</strong> Ventana emergente interactiva con descripción técnica, lista de beneficios destacados, stock en bodega y acceso directo a asesoría por WhatsApp.</li>
     <li><strong>Hero Banner de Alto Impacto:</strong> Fondo con degradado oscuro (Pet Teal overlay layer) para legibilidad óptima y llamadas a la acción directas.</li>
     <li><strong>Carrito de Compras Deslizante:</strong> Calculador dinámico de subtotal con barra de progreso para Envío Gratis.</li>
   </ul>
@@ -199,9 +113,17 @@
   <h2>B. Checkout Seguro sin Login (ADR-001)</h2>
   <ul>
     <li><strong>Captura Completa para Facturación:</strong> Formulario Guest con validación estricta de RUT chileno, email, teléfono, dirección y comuna.</li>
-    <li><strong>Recálculo de Precios Cero-Confianza (Zero-Trust):** El servidor recalcula el subtotal y el costo de envío directamente contra Airtable para evitar manipulación de precios desde el cliente.</li>
+    <li><strong>Recálculo de Precios Cero-Confianza (Zero-Trust):</strong> El servidor recalcula el subtotal y el costo de envío directamente contra Airtable para evitar manipulación de precios desde el cliente.</li>
     <li><strong>Privacidad de Datos PII:</strong> Opción para el cliente de borrar sus datos guardados localmente (localStorage) con un solo clic.</li>
     <li><strong>URLs de Confirmación Anti-IDOR:</strong> Generación de hash_seguridad único (UUID v4) para proteger la privacidad de la boleta y el pedido.</li>
+  </ul>
+
+  <h2>C. Panel Administrador Integrado (Estilo WooCommerce)</h2>
+  <ul>
+    <li><strong>Acceso Privado & Autenticación:</strong> Inicio de sesión seguro para el equipo de operaciones de Lola Pet.</li>
+    <li><strong>Gestión de Catálogo & Variantes:</strong> Vista general tipo tabla con miniatura de producto, SKU, precio regular/oferta, stock en tiempo real y switch de activación/pausa de publicación.</li>
+    <li><strong>Gestión Integral de Pedidos:</strong> Filtros por estado (Pendiente, Pagado, Enviado, Alerta: Sobreventa) con botón de Acción Rápida WhatsApp para contactar al cliente con un clic.</li>
+    <li><strong>Control de Tarjetas de Envío & Cupones:</strong> Módulo para modificar tarifas de despacho por comuna y crear códigos de descuento promocionales.</li>
   </ul>
 
   <h1>4. Blindaje de Seguridad & Auditoría Senior Aplicada</h1>
@@ -232,8 +154,13 @@
         <td style="text-align: right;">$850.000</td>
       </tr>
       <tr>
+        <td><strong>Panel Administrador WooCommerce Style</strong></td>
+        <td>Dashboard privado para gestión de catálogo, stock, pedidos, cupones y estado de despacho con WhatsApp directo.</td>
+        <td style="text-align: right;">$500.000</td>
+      </tr>
+      <tr>
         <td><strong>Arquitectura Headless Airtable</strong></td>
-        <td>Conexión API con retries, resiliencia HTTP 429 y sincronización de pedidos.</td>
+        <td>Conexión API con retries, resiliencia HTTP 429 y sincronización bidireccional.</td>
         <td style="text-align: right;">$650.000</td>
       </tr>
       <tr>
@@ -248,7 +175,7 @@
       </tr>
       <tr class="total-row">
         <td colspan="2"><strong>TOTAL INVERSIÓN PROYECTO (Solución Llave en Mano sin mensualidades de plataforma)</strong></td>
-        <td style="text-align: right;"><strong>$2.500.000 IVA incl.</strong></td>
+        <td style="text-align: right;"><strong>$3.000.000 IVA incl.</strong></td>
       </tr>
     </tbody>
   </table>
